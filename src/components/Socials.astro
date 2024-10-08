@@ -1,0 +1,47 @@
+---
+import { FaGithub, FaLink, FaFacebook, FaMastodon, FaInstagram, FaLinkedin, FaReddit, FaTwitch, FaXTwitter, FaYoutube, FaNpm, FaAt } from 'react-icons/fa6';
+import type { IconType } from 'react-icons/lib';
+import dataJson from '../../data.json';
+interface Props {
+	github: string;
+	nodes: {
+		provider: string;
+		displayName: string;
+		url: string;
+	}[];
+}
+
+const IconMaps: {[key: string]: IconType} = {
+	"GITHUB": FaGithub,
+	"GENERIC": FaLink ,
+	"FACEBOOK": FaFacebook,
+	"HOMETOWN": FaMastodon,
+	"INSTAGRAM": FaInstagram,
+	"LINKEDIN": FaLinkedin ,
+	"MASTODON": FaMastodon,
+	"REDDIT": FaReddit ,
+	"TWITCH": FaTwitch ,
+	"TWITTER": FaXTwitter ,
+	"YOUTUBE": FaYoutube ,
+	"NPM": FaNpm ,
+};
+
+const { nodes, github } = Astro.props;
+---
+<div class="flex items-center gap-4 mt-6 opacity-80">
+	<a href={`mailto:${dataJson.email}`} target="_blank" class="hover:underline flex pr-3 border-r-2 border-gray-700 border-opacity-20 items-center justify-center gap-2 font-medium">
+		<FaAt />  {dataJson.email}
+	</a>
+	<div class="flex gap-8 items-center justify-start">
+		<a href={`https://github.com/${github}`} target="_blank" class="hover:underline flex items-center justify-center gap-2 font-medium">
+			<FaGithub />  {github}
+		</a>
+		{nodes.map((social) => {
+			const Icon: IconType = IconMaps[social.provider.toUpperCase()] || IconMaps["GENERIC"] || FaLink;
+	
+			return(<a href={social.url} target="_blank" class="hover:underline flex items-center justify-center gap-2 font-medium">
+				<Icon /> {social.displayName}
+			</a>)
+		})}
+	</div>
+</div>
