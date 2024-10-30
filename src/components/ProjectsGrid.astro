@@ -1,0 +1,56 @@
+---
+const { repositories } = Astro.props;
+---
+
+<div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+  {repositories?.map((repo: {
+      name: string;
+      description: string;
+      url: string;
+      openGraphImageUrl: string;
+      stargazerCount: number;
+      forkCount: number;
+      updatedAt: string;
+    }) => (
+    <div 
+      class="group relative flex flex-col gap-3 p-2 cursor-pointer repo"
+      id={repo.name}
+      data-url={repo.url}
+    >
+      <img
+        src={repo.openGraphImageUrl}
+        alt={repo.name}
+        class="aspect-[1280/640] object-cover saturate-0 opacity-70 group-hover:opacity-100 group-hover:saturate-100 transition-all duration-500"
+      />
+      <div>
+        <a
+          href={repo.url}
+          class="font-semibold text-lg hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {repo.name}
+        </a>
+        <p class="text-sm">
+          {repo.description || "No description provided"}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<!-- Pass repositories data to JavaScript as a JSON script -->
+<script type="application/json" id="repositories-data">
+    {Astro.toJson(repositories)}
+</script>
+
+<script>
+  document.querySelectorAll('.repo').forEach((el) => {
+    el.addEventListener('click', () => {
+      const repoUrl = el.getAttribute('data-url');
+      if (repoUrl) {
+        window.open(repoUrl, '_blank')?.focus()
+      }
+    });
+  });
+</script>

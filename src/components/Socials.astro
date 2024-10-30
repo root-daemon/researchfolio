@@ -1,47 +1,131 @@
 ---
-import { FaGithub, FaLink, FaFacebook, FaMastodon, FaInstagram, FaLinkedin, FaReddit, FaTwitch, FaXTwitter, FaYoutube, FaNpm, FaAt } from 'react-icons/fa6';
-import type { IconType } from 'react-icons/lib';
-import dataJson from '../../data.json';
+import {
+  FaGithub,
+  FaLink,
+  FaFacebook,
+  FaMastodon,
+  FaInstagram,
+  FaLinkedin,
+  FaReddit,
+  FaTwitch,
+  FaXTwitter,
+  FaYoutube,
+  FaNpm,
+  FaAt,
+} from "react-icons/fa6";
+import type { IconType } from "react-icons/lib";
+import dataJson from "../../data.json";
+import { FaDiscord } from "react-icons/fa";
+
 interface Props {
-	github: string;
-	nodes: {
-		provider: string;
-		displayName: string;
-		url: string;
-	}[];
+  github: string;
+  nodes: {
+    provider: string;
+    displayName: string;
+    url: string;
+  }[];
 }
 
-const IconMaps: {[key: string]: IconType} = {
-	"GITHUB": FaGithub,
-	"GENERIC": FaLink ,
-	"FACEBOOK": FaFacebook,
-	"HOMETOWN": FaMastodon,
-	"INSTAGRAM": FaInstagram,
-	"LINKEDIN": FaLinkedin ,
-	"MASTODON": FaMastodon,
-	"REDDIT": FaReddit ,
-	"TWITCH": FaTwitch ,
-	"TWITTER": FaXTwitter ,
-	"YOUTUBE": FaYoutube ,
-	"NPM": FaNpm ,
+const IconMaps: { [key: string]: IconType } = {
+  GITHUB: FaGithub,
+  GENERIC: FaLink,
+  FACEBOOK: FaFacebook,
+  HOMETOWN: FaMastodon,
+  INSTAGRAM: FaInstagram,
+  LINKEDIN: FaLinkedin,
+  MASTODON: FaMastodon,
+  REDDIT: FaReddit,
+  TWITCH: FaTwitch,
+  TWITTER: FaXTwitter,
+  YOUTUBE: FaYoutube,
+  DISCORD: FaDiscord,
+  NPM: FaNpm,
+};
+
+const urlPatterns = {
+  "github.com": "GITHUB",
+  "facebook.com": "FACEBOOK",
+  "instagram.com": "INSTAGRAM",
+  "linkedin.com": "LINKEDIN",
+  "reddit.com": "REDDIT",
+  "twitch.tv": "TWITCH",
+  "twitter.com": "TWITTER",
+  "x.com": "TWITTER",
+  "youtube.com": "YOUTUBE",
+  "discord.gg": "DISCORD",
+  "discord.com": "DISCORD",
+  "npmjs.com": "NPM",
+  mastodon: "MASTODON",
+};
+
+const getIconFromUrl = (url: string) => {
+  try {
+    const urlObj = new URL(url.toLowerCase());
+    const hostname = urlObj.hostname;
+
+    for (const [pattern, provider] of Object.entries(urlPatterns)) {
+      if (hostname === pattern || hostname.endsWith(`.${pattern}`)) {
+        return provider;
+      }
+    }
+
+    for (const [pattern, provider] of Object.entries(urlPatterns)) {
+      if (url.includes(pattern)) {
+        return provider;
+      }
+    }
+  } catch (e) {
+    console.error("Invalid URL:", e);
+  }
+
+  return "GENERIC";
 };
 
 const { nodes, github } = Astro.props;
+
+const getIconForSocial = (social: Props["nodes"][0]) => {
+  const provider = getIconFromUrl(social.url);
+  if (provider != "GENERIC") {
+    return IconMaps[provider];
+  } else
+  if (social.provider && IconMaps[social.provider.toUpperCase()]) {
+    return IconMaps[social.provider.toUpperCase()];
+  }
+  return IconMaps.GENERIC;
+};
 ---
-<div class="flex items-center gap-4 mt-6 opacity-80">
-	<a href={`mailto:${dataJson.email}`} target="_blank" class="hover:underline flex pr-3 border-r-2 border-gray-700 border-opacity-20 items-center justify-center gap-2 font-medium">
-		<FaAt />  {dataJson.email}
-	</a>
-	<div class="flex gap-8 items-center justify-start">
-		<a href={`https://github.com/${github}`} target="_blank" class="hover:underline flex items-center justify-center gap-2 font-medium">
-			<FaGithub />  {github}
-		</a>
-		{nodes.map((social) => {
-			const Icon: IconType = IconMaps[social.provider.toUpperCase()] || IconMaps["GENERIC"] || FaLink;
-	
-			return(<a href={social.url} target="_blank" class="hover:underline flex items-center justify-center gap-2 font-medium">
-				<Icon /> {social.displayName}
-			</a>)
-		})}
-	</div>
+
+<div class="flex items-center gap-x-4 gap-y-2 mt-8 opacity-80 flex-wrap">
+  <a
+    href={`mailto:${dataJson.email}`}
+    target="_blank"
+    class="hover:underline flex pr-3 border-r-2 border-border items-center justify-center gap-2 font-medium"
+  >
+    <FaAt />
+    {dataJson.email}
+  </a>
+  <div class="flex gap-x-8 gap-y-2 items-center justify-start flex-wrap">
+    <a
+      href={`https://github.com/${github}`}
+      target="_blank"
+      class="hover:underline flex items-center justify-center gap-2 font-medium"
+    >
+      <FaGithub />
+      {github}
+    </a>
+    {
+      nodes.map((social) => {
+        const Icon = getIconForSocial(social);
+        return (
+          <a
+            href={social.url}
+            target="_blank"
+            class="hover:underline flex items-center justify-center gap-2 font-medium"
+          >
+            {Icon && <Icon />} {social.displayName}
+          </a>
+        );
+      })
+    }
+  </div>
 </div>

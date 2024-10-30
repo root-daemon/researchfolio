@@ -1,6 +1,22 @@
 {
-    "name": "Arul Kumaran",
-    "email": "arulkumarann@gmail.com",
-    "biography": "A second year UG student with a keen interest in Computer Vision domain under Deep Learning.",
-    "github": "https://github.com/arulkumarann"
+  "name": "Rahul Marban",
+  "email": "rahulmarban@gmail.com",
+  "biography": "",
+  "github": "https://github.com/rahuletto",
+  "location": "India",
+  "skills": {
+    "frontend": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Typescript",
+      "Astro",
+      "NextJS",
+      "SolidJS"
+    ],
+    "backend": ["Node.js", "Express", "Hono", "ElysiaJS"],
+    "database": ["MongoDB", "MySql", "Postgres", "Firebase"],
+    "others": ["Python", "Java", "C++", "C", "React Native"]
+  }
 }

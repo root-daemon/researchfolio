@@ -1,57 +1,500 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import dataJson from '../../data.json';
-import Socials from '../components/Socials.astro';
-
-
+import Layout from "../layouts/Layout.astro";
+import dataJson from "../../data.json";
+import Socials from "../components/Socials.astro";
+import Theme from "../components/Theme.astro";
+import ProjectsGrid from "../components/ProjectsGrid.astro";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { FaMapPin } from "react-icons/fa6";
+import Skills from "../components/Skills.astro";
+import {
+  GoCommit,
+  GoGitPullRequest,
+  GoIssueOpened,
+  GoStar,
+} from "react-icons/go";
 
 const graph = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Cache-Control": "private; stale-while-revalidate=3600",
-      Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
-    },
-	body: JSON.stringify({
-  query: `
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Cache-Control": "private; stale-while-revalidate=3600",
+    Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+  },
+  body: JSON.stringify({
+    query: `
     query {
       user(login: "${dataJson.github.replace("https://github.com/", "")}") {
+        
         name
         bio
         socialAccounts(first: 5) {
           nodes {
             provider
-			displayName
+			      displayName
             url
           }
         }
-        repositories(first: 50) {
-          nodes {
-            name
-            description
-            isTemplate
+          
+        contributionsCollection {
+      totalCommitContributions
+      totalPullRequestContributions
+      totalIssueContributions
+      contributionCalendar {
+        totalContributions
+      }
+      totalRepositoriesWithContributedCommits
+    }
+      issues {
+      totalCount
+    }
+    pullRequests {
+      totalCount
+    }
+    followers {
+      totalCount
+    }
+
+        repositories(first: 100, orderBy: { field: STARGAZERS, direction: DESC }) {
+        edges {
+        node {
+          languages(first: 10) {
+            totalSize
+            edges {
+              size
+              node {
+                name
+                color
+              }
+            }
           }
+  }
+  }
+      nodes {
+        name
+        stargazerCount 
+        stargazers {
+        totalCount
         }
+        openGraphImageUrl
+        forkCount
+        updatedAt
+        url
+        description
+      }
+    }
       }
     }
   `,
-  variables: {},
-}),
-})
-
+    variables: {},
+  }),
+});
 
 const data = await graph.json();
+
+function calculateLanguageStats(repositories: any) {
+  const languageMap = new Map<string, { size: number; color: string }>();
+  let totalSize = 0;
+
+  repositories.forEach((repo: any) => {
+    const languages = repo.node.languages.edges;
+    if (languages) {
+      languages.forEach((lang: any) => {
+        const name = lang.node.name;
+        const size = lang.size;
+        const color = lang.node.color;
+
+        if (languageMap.has(name)) {
+          languageMap.get(name)!.size += size;
+        } else {
+          languageMap.set(name, { size, color });
+        }
+
+        totalSize += size;
+      });
+    }
+  });
+
+  const languageStats: any[] = [];
+  languageMap.forEach((value, key) => {
+    const { size, color } = value;
+    const percent = (size / totalSize) * 100;
+    const stat = {
+      name: key,
+      color: color,
+      count: size,
+      percent: parseFloat(percent.toFixed(2)),
+    };
+    languageStats.push(stat);
+  });
+
+  languageStats.sort((a, b) => b.percent - a.percent);
+
+  return languageStats;
+}
+
+const langs = calculateLanguageStats(data.data.user.repositories.edges);
+
+function parseGitHubData(data: any) {
+  const userData = data.data.user;
+  const contributions = userData.contributionsCollection;
+  const repositories = userData.repositories.nodes;
+  const followers = userData.followers.totalCount;
+
+  const stars = repositories.reduce(
+    (acc: any, repo: any) => acc + repo.stargazers.totalCount,
+    0
+  );
+
+  const stats = {
+    commits: contributions.contributionCalendar.totalContributions,
+    pullRequests: userData.pullRequests.totalCount,
+    reviews: contributions.totalCommitContributions,
+    issues: userData.issues.totalCount,
+    stars,
+    followers,
+  };
+
+  return stats;
+}
+
+const userdata = parseGitHubData(data);
+const rank = calculateRank(userdata);
+
+function calculatePercentiles(stats: any): number {
+  const { commits, pullRequests, reviews, issues, stars, followers } = stats;
+
+  const commitPercentile = 1 - Math.exp(-commits / 100);
+  const prPercentile = 1 - Math.exp(-pullRequests / 100);
+  const reviewPercentile = 1 - Math.exp(-reviews / 100);
+  const issuePercentile = 1 - Math.exp(-issues / 100);
+  const starPercentile = (1 + erf(Math.log(stars) / Math.sqrt(2))) / 2;
+  const followerPercentile = (1 + erf(Math.log(followers) / Math.sqrt(2))) / 2;
+
+  const globalPercentile =
+    (commitPercentile +
+      prPercentile +
+      reviewPercentile +
+      issuePercentile +
+      starPercentile +
+      followerPercentile) /
+    6;
+
+  return globalPercentile * 100;
+}
+
+function mapPercentileToRank(percent: number): string {
+  const percentile = 100 - percent;
+  if (percentile <= 1) return "S";
+  if (percentile <= 12.5) return "A+";
+  if (percentile <= 25) return "A";
+  if (percentile <= 37.5) return "A-";
+  if (percentile <= 50) return "B+";
+  if (percentile <= 62.5) return "B";
+  if (percentile <= 75) return "B-";
+  if (percentile <= 87.5) return "C+";
+  if (percentile <= 91) return "C";
+  return "D";
+}
+
+function calculateRank(stats: any) {
+  const percentile = calculatePercentiles(stats);
+  const rank = mapPercentileToRank(percentile);
+  return { rank, percentile };
+}
+
+function erf(x: number): number {
+  const a1 = 0.254829592;
+  const a2 = -0.284496736;
+  const a3 = 1.421413741;
+  const a4 = -1.453152027;
+  const a5 = 1.061405429;
+  const p = 0.3275911;
+
+  const sign = x >= 0 ? 1 : -1;
+  x = Math.abs(x);
+
+  const t = 1.0 / (1.0 + p * x);
+  const y = ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t;
+  return sign * (1.0 - y * Math.exp(-x * x));
+}
 ---
 
 <Layout title={dataJson.name}>
-	<main class="p-6">
-		<h1 class="my-2 font-bold text-4xl">{dataJson.name}</h1>
-		<p class="font-regular text-lg">{dataJson.biography || data?.data?.user?.bio}</p>
+  <main class="lg:p-6">
+    <h1
+      onclick="window.scrollTo({ top:0, behavior: 'smooth' })"
+      class="my-2 font-bold text-4xl bg-background px-2 py-1 min-w-[280px] rounded-lg lg:sticky lg:top-12 w-fit z-10 -m-2"
+    >
+      {dataJson.name}
+    </h1>
+    <Theme />
+    <p class="font-regular text-lg">
+      {dataJson.biography || data?.data?.user?.bio}
+    </p>
 
-		<div class="my-4">
-			<Socials nodes={data?.data?.user?.socialAccounts?.nodes || []} github={dataJson.github.replace("https://github.com/", "")} />
-		</div>
+    <div class="my-4">
+      <Socials
+        nodes={data?.data?.user?.socialAccounts?.nodes || []}
+        github={dataJson.github.replace("https://github.com/", "")}
+      />
+    </div>
 
-		<hr class="border-gray-700 border-opacity-30" />
-	</main>
+    <hr class="border-border border-opacity-30" />
+
+    <div class="flex pt-12 lg:flex-row flex-col min-h-screen w-full gap-12">
+      <aside
+        id="sidebar"
+        class="min-w-[300px] justify-between lg:flex h-[90vh] flex-col items-start hidden border-r sticky top-12 border-border border-opacity-30"
+      >
+        <div class="w-full">
+          <h2 class="text-3xl font-semibold my-2 mb-6">Summary</h2>
+          <nav
+            id="sidebar-links"
+            class="flex flex-col gap-4 w-full items-start justify-start"
+          >
+          </nav>
+        </div>
+        <div class="flex flex-col gap-5">
+          <div class="flex items-center gap-2">
+            <FaMapPin size={16} />
+            <span class="text-lg">{dataJson.location}</span>
+          </div>
+
+          <button
+            class="bg-background text-color hover:bg-color hover:text-background px-4 py-2 font-semibold border border-color"
+          >
+            Resume
+          </button>
+        </div>
+      </aside>
+
+      <div class="flex flex-col gap-32">
+        <section id="projects" class="min-h-screen">
+          <a
+            href=`${dataJson.github}/repositories`
+            class="flex items-center cursor-pointer gap-4 hover:gap-8 transition-all duration-100 flex-row mb-4"
+          >
+            <h2
+              class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg mb-4 w-fit z-10 -m-2"
+            >
+              Projects
+            </h2>
+            <IoIosArrowRoundForward size={26} />
+          </a>
+
+          <ProjectsGrid
+            repositories={data.data.user?.repositories?.nodes.slice(0, 9)}
+          />
+        </section>
+        <section id="skills" class="min-h-[50vh]">
+          <h2
+            class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
+          >
+            Skills
+          </h2>
+
+          <Skills />
+        </section>
+
+        <section id="github" class="min-h-[50vh]">
+          <a
+            href=`${dataJson.github}`
+            class="flex items-center cursor-pointer gap-4 hover:gap-8 transition-all duration-100 flex-row mb-4"
+          >
+            <h2
+              class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg mb-4 w-fit z-10 -m-2"
+            >
+              Github
+            </h2>
+            <IoIosArrowRoundForward size={26} />
+          </a>
+
+          <div
+            class="grid grid-cols-1 xl:grid-cols-2 items-center justify-center"
+          >
+            <div class="flex flex-row xl:gap-x-16 gap-x-8 gap-y-4 flex-wrap">
+              <div class="flex flex-col gap-3">
+                <div
+                  class="relative flex flex-col items-center justify-center w-32 h-32"
+                >
+                  <svg class="w-full h-full" viewBox="0 0 32 32">
+                    <circle
+                      cx="16"
+                      cy="16"
+                      r="15.5"
+                      class="stroke-color opacity-10 fill-none"
+                      stroke-width="1"></circle>
+
+                    <circle
+                      cx="16"
+                      cy="16"
+                      r="15.5"
+                      class="fill-none stroke-color opacity-70"
+                      stroke-width="0.95"
+                      stroke-dasharray={`${rank.percentile}, 100`}
+                      transform="rotate(-90 16 16)"></circle>
+                  </svg>
+
+                  <div
+                    class="absolute flex flex-col items-center justify-center"
+                  >
+                    <h1 class="text-6xl font-extrabold mb-2">{rank.rank}</h1>
+                  </div>
+                </div>
+                <div class="px-2 py-1 border-border border-b mx-auto">
+                  <a href={dataJson.github} class="text-base text-color">
+                    {dataJson.github.replace("https://github.com/", "")}
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="flex flex-col gap-4 h-full items-start justify-center w-fit"
+              >
+                <div class="flex items-center gap-2 w-fit">
+                  <span
+                    class="text-color font-bold xl:min-w-[200px] min-w-[120px]"
+                    >Total stars:
+                  </span>
+                  <GoStar size={20} />
+                  <span class="text-color font-system font-bold"
+                    >{userdata.stars}</span
+                  >
+                </div>
+                <div class="flex items-center gap-2 w-fit">
+                  <span
+                    class="text-color font-bold xl:min-w-[200px] min-w-[120px]"
+                    >Total issues:
+                  </span>
+                  <GoIssueOpened size={20} />
+                  <span class="text-color font-system font-bold"
+                    >{userdata.issues}</span
+                  >
+                </div>
+                <div class="flex items-center gap-2 w-fit">
+                  <span
+                    class="text-color font-bold xl:min-w-[200px] min-w-[120px]"
+                    >Total commits:
+                  </span>
+                  <GoCommit size={20} />
+                  <span class="text-color font-system font-bold"
+                    >{userdata.commits}</span
+                  >
+                </div>
+                <div class="flex items-center gap-2 w-fit">
+                  <span
+                    class="text-color font-bold xl:min-w-[200px] min-w-[120px]"
+                    >Total Pull Requests:
+                  </span>
+                  <GoGitPullRequest size={20} />
+                  <span class="text-color font-system font-bold"
+                    >{userdata.pullRequests}</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex w-full flex-col xl:pl-12 xl:border-l border-t mt-12 xl:border-t-0 xl:mt-0 pt-12 xl:pt-0 pl-0 border-border gap-2"
+            >
+              {
+                langs.slice(0, 6).map((language) => (
+                  <div class="flex items-center justify-start w-full gap-4">
+                    <span class="text-lg font-semibold w-[150px]">
+                      {language.name}
+                    </span>
+
+                    <div
+                      class="progress-bar bg-color rounded-3xl h-0.5 transition-all duration-100 cursor-pointer"
+                      style={{ width: `${language.percent * 3}px` }}
+                    />
+
+                    <div class="text-color text-base opacity-80 font-system font-extrabold">
+                      {language.percent.toFixed(2)}%
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sidebarLinksContainer = document.getElementById("sidebar-links");
+
+    document.querySelectorAll("section").forEach((section) => {
+      const sectionId = section.id;
+      const sectionTitle = section.querySelector("h2")?.innerText;
+
+      const navItem = document.createElement("div");
+      navItem.className = "flex gap-4 w-full items-center justify-start";
+
+      const progressBar = document.createElement("div");
+      progressBar.className =
+        "progress-bar bg-color rounded-3xl h-0.5 transition-all duration-100 cursor-pointer";
+      progressBar.style.width = "15%";
+      progressBar.style.opacity = "0.3";
+
+      const navText = document.createElement("p");
+      navText.className =
+        "text-lg font-medium transition-all duration-100 hover:underline cursor-pointer";
+      navText.textContent = sectionTitle ?? "";
+
+      navItem.appendChild(progressBar);
+      navItem.appendChild(navText);
+      sidebarLinksContainer?.appendChild(navItem);
+
+      navItem.addEventListener("click", () => {
+        document
+          .getElementById(sectionId)
+          ?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    const options = {
+      root: null,
+      threshold: 0.6,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!sidebarLinksContainer) return;
+
+      // Reset all progress bars
+      Array.from(sidebarLinksContainer.children).forEach((item) => {
+        const progressBar: HTMLElement | null = item.querySelector(".progress-bar");
+        if (progressBar) {
+          progressBar.style.width = "15%";
+          progressBar.style.opacity = "0.3";
+        }
+      });
+
+      // Only activate the first intersecting section
+      const firstIntersecting = entries.find((entry) => entry.isIntersecting);
+      if (firstIntersecting) {
+        const navItem = Array.from(sidebarLinksContainer.children).find(
+          (item) =>
+            item.textContent?.trim() ===
+            firstIntersecting.target.querySelector("h2")?.innerText.trim()
+        );
+
+        if (navItem) {
+          const progressBar: HTMLElement | null = navItem.querySelector(".progress-bar");
+          if (progressBar) {
+            progressBar.style.width = "50%";
+            progressBar.style.opacity = "0.6";
+          }
+        }
+      }
+    }, options);
+
+    document.querySelectorAll("section").forEach((section) => {
+      observer.observe(section);
+    });
+  });
+</script>
