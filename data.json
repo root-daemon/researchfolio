@@ -2,6 +2,12 @@
   "name": "Rahul Marban",
   "email": "rahulmarban@gmail.com",
   "biography": "",
+  "phone": "",
+  "links": {
+    "github": "",
+    "twitter": "",
+    "linkedin": ""
+  },
   "resume": "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Rahuletto/auto-resume/main/resume.pdf",
   "github": "https://github.com/rahuletto",
   "location": "India",

@@ -12,6 +12,7 @@ import {
   FaYoutube,
   FaNpm,
   FaAt,
+  FaPhone,
 } from "react-icons/fa6";
 import type { IconType } from "react-icons/lib";
 import dataJson from "../../data.json";
@@ -96,23 +97,37 @@ const getIconForSocial = (social: Props["nodes"][0]) => {
 ---
 
 <div class="flex items-center gap-x-4 gap-y-2 mt-8 opacity-80 flex-wrap">
-  <a
-    href={`mailto:${dataJson.email}`}
-    target="_blank"
-    class="hover:underline flex pr-3 border-r-2 border-border items-center justify-center gap-2 font-medium"
-  >
-    <FaAt />
-    {dataJson.email}
-  </a>
-  <div class="flex gap-x-8 gap-y-2 items-center justify-start flex-wrap">
+  {dataJson.email && (
     <a
-      href={`https://github.com/${github}`}
+      href={`mailto:${dataJson.email}`}
       target="_blank"
-      class="hover:underline flex items-center justify-center gap-2 font-medium"
+      class="hover:underline flex pr-3 border-r-2 border-border items-center justify-center gap-2 font-medium"
     >
-      <FaGithub />
-      {github}
+      <FaAt />
+      {dataJson.email}
     </a>
+  )}
+  {dataJson.phone && (
+    <a
+      href={`tel:${dataJson.phone}`}
+      target="_blank"
+      class="hover:underline flex pr-3 border-r-2 border-border items-center justify-center gap-2 font-medium"
+    >
+      <FaPhone />
+      {dataJson.phone}
+    </a>
+  )}
+  <div class="flex gap-x-8 gap-y-2 items-center justify-start flex-wrap">
+    {dataJson.links?.github || github ? (
+      <a
+        href={`https://github.com/${dataJson.links?.github || github}`}
+        target="_blank"
+        class="hover:underline flex items-center justify-center gap-2 font-medium"
+      >
+        <FaGithub />
+        {dataJson.links?.github || github}
+      </a>
+    ) : null}
     {
       nodes.map((social) => {
         const Icon = getIconForSocial(social);
