@@ -161,35 +161,41 @@ const data: GitHubQueryResponse = await graph.json();
             repositories={data.data.user?.repositories?.nodes.slice(0, 9)}
           />
         </section>
-        <section id="experience" class="min-h-[50vh]">
-          <h2
-            class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
-          >
-            Experience
-          </h2>
+        {dataJson.experience && dataJson.experience.length > 0 && (
+          <section id="experience" class="min-h-[50vh]">
+            <h2
+              class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
+            >
+              Experience
+            </h2>
 
-          <Experience experience={dataJson.experience} />
-        </section>
+            <Experience experience={dataJson.experience} />
+          </section>
+        )}
 
-        <section id="skills">
-          <h2
-            class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
-          >
-            Skills
-          </h2>
+        {dataJson.skills && Object.keys(dataJson.skills).length > 0 && (
+          <section id="skills">
+            <h2
+              class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
+            >
+              Skills
+            </h2>
 
-          <Skills />
-        </section>
+            <Skills />
+          </section>
+        )}
 
-        <section id="achievements">
-          <h2
-            class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
-          >
-            Acheivements
-          </h2>
+        {dataJson.acheivements && dataJson.acheivements.length > 0 && (
+          <section id="achievements">
+            <h2
+              class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
+            >
+              Achievements
+            </h2>
 
-          <Acheivements />
-        </section>
+            <Acheivements />
+          </section>
+        )}
         <div class="py-12 flex justify-between items-center">
           <p>
             Made from a template, By <a

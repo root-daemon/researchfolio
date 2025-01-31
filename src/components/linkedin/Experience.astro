@@ -27,7 +27,7 @@ const sortedExperience = experience?.sort((a, b) => {
 ---
 
 <div class="experience-section grid grid-cols-1 xl:grid-cols-2 gap-6 md:p-4 mt-6 md:mt-0">
-  {sortedExperience?.map((position, index) => (
+  {sortedExperience && sortedExperience.length > 0 ? sortedExperience.map((position, index) => (
     <div
       class={`experience-item flex gap-4 group lg:p-4 min-h-24 relative ${
         index > 0 && sortedExperience[index - 1]?.companyName === position.companyName ? 'border-t-0' : ''
@@ -75,7 +75,9 @@ const sortedExperience = experience?.sort((a, b) => {
         )}
       </div>
     </div>
-  ))}
+  )) : (
+    <p class="text-color opacity-70 col-span-2">No experience data available</p>
+  )}
 </div>
 
 <style>

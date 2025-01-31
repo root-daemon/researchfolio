@@ -6,7 +6,7 @@ import dataJson from "../../data.json";
     class="relative grid grid-cols-1 lg:grid-cols-2 text-color"
 >
     {
-        dataJson.acheivements.map((category) => (
+        dataJson.acheivements && dataJson.acheivements.length > 0 ? dataJson.acheivements.map((category) => (
             <li class="my-4 marker:text-color list-disc ml-5">
                 <div class="flex flex-col border-l border-border  pb-2 pl-4 -ml-3 border-opacity-30">
                     <h3 class="text-xl font-semibold capitalize">
@@ -20,6 +20,8 @@ import dataJson from "../../data.json";
                     <p class="mb-1">{category.description}</p>
                 </div>
             </li>
-        ))
+        )) : (
+            <li class="col-span-2 text-color opacity-70">No achievements data available</li>
+        )
     }
 </ul>

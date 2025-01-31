@@ -14,20 +14,10 @@
   "linkedin": "https://www.linkedin.com/in/rahul-marban",
   "experience": [
     {
-      "companyId": 10660332,
       "companyName": "SRM Innovation and Incubation Centre",
-      "companyUsername": "srmdei",
       "companyURL": "https://www.linkedin.com/school/srmdei/",
       "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQFMgg5KrYsRNg/company-logo_400_400/company-logo_400_400/0/1728041468017/srmdei_logo?e=1746662400&v=beta&t=hRYCid5pES8TNGqPaAp6bQWR3fxK_TQlbC7ffdIBfdk",
-      "companyIndustry": "Venture Capital & Private Equity",
-      "companyStaffCountRange": "11 - 50",
       "title": "Frontend Developer Intern",
-      "multiLocaleTitle": {
-        "en_US": "Frontend Developer Intern"
-      },
-      "multiLocaleCompanyName": {
-        "en_US": "SRM Innovation and Incubation Centre"
-      },
       "location": "Chennai, Tamil Nadu, India",
       "description": "- Revamped over 60 web pages to modernize the website, elevating user engagement and ensuring an intuitive interface that resulted in a measurable increase in user satisfaction metrics gathered through post-launch surveys.\n- Collaborated with a small team of 2 developers over 6 months to deliver a high-quality web solution.\n- Maintained consistent communication to gather requirements, provide updates, and successfully developed 3+ websites.",
       "employmentType": "Internship",
@@ -43,20 +33,14 @@
       }
     },
     {
-      "companyId": 105034663,
+
       "companyName": "Turn2Law",
-      "companyUsername": "turn2law",
+
       "companyURL": "https://www.linkedin.com/company/turn2law/",
       "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQHTGous8H7fCw/company-logo_400_400/company-logo_400_400/0/1731761473493?e=1746662400&v=beta&t=OLHrk9npPiVQIgeaXkUKixr3eBPJR_6be_YbXBS-7Ds",
-      "companyIndustry": "Law Practice",
-      "companyStaffCountRange": "2 - 10",
+
+
       "title": "Chief Design Officer",
-      "multiLocaleTitle": {
-        "en_US": "Chief Design Officer"
-      },
-      "multiLocaleCompanyName": {
-        "en_US": "Turn2Law"
-      },
       "location": "Chennai, Tamil Nadu, India",
       "description": "- Led the creative direction for a team of 5+ designers and developers, ensuring alignment with brand vision and user needs.\n-  Transformed the platform\u2019s UI/UX by designing intuitive navigation features, leading to a 20% surge in user engagement and enhanced customer satisfaction metrics based on direct feedback from usability testing sessions.",
       "employmentType": "Full-time",
@@ -72,20 +56,10 @@
       }
     },
     {
-      "companyId": 102509709,
       "companyName": "Neugence Technology Pvt Ltd",
-      "companyUsername": "neugence",
       "companyURL": "https://www.linkedin.com/company/neugence/",
       "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQG6Tea7MQS1Sw/company-logo_400_400/company-logo_400_400/0/1733347950531/neugence_logo?e=1746662400&v=beta&t=0IumQsy4v8b_FZKGeMVVTXeAfMOJKRxc-IV_EOLVGWM",
-      "companyIndustry": "Computer Software",
-      "companyStaffCountRange": "11 - 50",
       "title": "Full Stack Software Development Intern",
-      "multiLocaleTitle": {
-        "en_US": "Full Stack Software Development Intern"
-      },
-      "multiLocaleCompanyName": {
-        "en_US": "Neugence Technology Pvt Ltd"
-      },
       "location": "Remote",
       "description": "- Evolved and launched 2 fully functional websites as a frontend developer, ensuring seamless user experiences and adherence to project deadlines.\n- Tailored and implemented responsive web designs, increasing user engagement by 38% through refined accessibility and cross-device compatibility.\n- Migrated the entire codebase to Vite, reducing development cycle times by 25%, resulting in faster feature delivery and team productivity better than before.",
       "employmentType": "Internship",
@@ -101,20 +75,11 @@
       }
     },
     {
-      "companyId": 13205251,
       "companyName": "Next Tech Lab",
-      "companyUsername": "next-tech-lab",
       "companyURL": "https://www.linkedin.com/company/next-tech-lab/",
       "companyLogo": "https://media.licdn.com/dms/image/v2/C510BAQGikFtlBr3v3A/company-logo_400_400/company-logo_400_400/0/1631390746546?e=1746662400&v=beta&t=QrjA5Uy10d7O1w2YQOe0en0ptB7LKnljyZBnCnFhk7c",
       "companyIndustry": "Research",
-      "companyStaffCountRange": "201 - 500",
       "title": "Associate - Norman Lab",
-      "multiLocaleTitle": {
-        "en_US": "Associate - Norman Lab"
-      },
-      "multiLocaleCompanyName": {
-        "en_US": "Next Tech Lab"
-      },
       "location": "Chennai, Tamil Nadu, India",
       "description": "Led the development of the admin portal for NextTech Lab, ensuring robust architecture and smooth user experiences, resulting in a 25% improvement in task completion time. Utilised modern frameworks to deliver scalable and maintainable code, supporting future scalability for up to 1000+ users.",
       "employmentType": "Full-time",
@@ -130,20 +95,10 @@
       }
     },
     {
-      "companyId": 19165256,
       "companyName": "Google Developer Student Clubs SRM",
-      "companyUsername": "gdgsrm",
       "companyURL": "https://www.linkedin.com/company/gdgsrm/",
       "companyLogo": "https://media.licdn.com/dms/image/v2/C560BAQHtS3OdZ0Kr8Q/company-logo_400_400/company-logo_400_400/0/1630624490752?e=1746662400&v=beta&t=zngILU4xzVqlmMhfzx2KlVgbR0R7gAU-bCgWGBme88o",
-      "companyIndustry": "Computer Software",
-      "companyStaffCountRange": "11 - 50",
       "title": "Technical Member",
-      "multiLocaleTitle": {
-        "en_US": "Technical Member"
-      },
-      "multiLocaleCompanyName": {
-        "en_US": "Google Developer Student Clubs SRM"
-      },
       "location": "SRM University, Kattankulathur",
       "description": "Contributed to the GDSC website redevelopment project using Next.js and TypeScript, resulting in a 15% reduction in page load times.\n- Focused on optimising code quality and optimising the code, making a ~20% improvement in overall performance metrics",
       "employmentType": "Full-time",
@@ -159,20 +114,10 @@
       }
     },
     {
-      "companyId": 14691434,
       "companyName": "Microsoft Learn Student Ambassadors SRM",
-      "companyUsername": "mlsa-srm",
       "companyURL": "https://www.linkedin.com/company/mlsa-srm/",
       "companyLogo": "https://media.licdn.com/dms/image/v2/C4E0BAQEq8dvxYn2RYw/company-logo_400_400/company-logo_400_400/0/1630624717682/mspc_srm_logo?e=1746662400&v=beta&t=Es5akjunaPxxBf2BAbTlVu87okyHkvPElm5DevLhjjQ",
-      "companyIndustry": "Information Technology & Services",
-      "companyStaffCountRange": "11 - 50",
       "title": "Technical Associate",
-      "multiLocaleTitle": {
-        "en_US": "Technical Associate"
-      },
-      "multiLocaleCompanyName": {
-        "en_US": "Microsoft Learn Student Ambassadors SRM"
-      },
       "location": "Chennai, Tamil Nadu, India",
       "description": "",
       "employmentType": "Full-time",
@@ -188,20 +133,10 @@
       }
     },
     {
-      "companyId": 99199909,
       "companyName": "Dreamnity",
-      "companyUsername": "dreamnity",
       "companyURL": "https://www.linkedin.com/company/dreamnity/",
       "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQFC5-Yrw4o_Tw/company-logo_400_400/company-logo_400_400/0/1718265329081/dreamnity_logo?e=1746662400&v=beta&t=UQhXmpRp6D5Dl5Swy8P9G0qUMn50nN14-pn85WbhIx8",
-      "companyIndustry": "Internet",
-      "companyStaffCountRange": "2 - 10",
       "title": "Co-Founder and CTO",
-      "multiLocaleTitle": {
-        "en_US": "Co-Founder and CTO"
-      },
-      "multiLocaleCompanyName": {
-        "en_US": "Dreamnity"
-      },
       "location": "Chennai, Tamil Nadu, India",
       "description": "Lead the technical direction of the startup with 5+ employees, leading a team to develop Dreamnity and maintain high-quality deliverables.",
       "employmentType": "Full-time",
