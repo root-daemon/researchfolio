@@ -22,7 +22,7 @@ A modern, minimalist portfolio template built with Astro and Lenis. Showcase you
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/researchfolio.git
+git clone https://github.com/rahuletto/researchfolio.git
 cd researchfolio
 ```
 
