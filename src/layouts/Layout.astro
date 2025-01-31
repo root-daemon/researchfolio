@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import "lenis/dist/lenis.css";
 ---
 
 <!doctype html>
@@ -24,34 +25,41 @@ const { title } = Astro.props;
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
-::-webkit-scrollbar {
-  width: 2px;
-}
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--color);
-  border-radius: 0px;
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 0px;
+  }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color) transparent;
-}
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color) transparent;
+  }
 
+  html,
+  body {
+    min-height: 100%;
+    height: auto;
+  }
 
   html {
-	--background: rgb(255, 251, 243);
-	--color: rgb(27, 27, 27);
-  --border: rgba(27, 27, 27, 0.2);
+    scroll-behavior: initial;
+
+    --background: rgb(255, 251, 243);
+    --color: rgb(27, 27, 27);
+    --border: rgba(27, 27, 27, 0.2);
   }
   html.dark {
-	--background: rgb(29, 30, 30) !important;
-	--color: rgb(255, 251, 243) !important;
-  --border: rgba(255, 251, 243, 0.05) !important;
+    --background: rgb(29, 30, 30) !important;
+    --color: rgb(255, 251, 243) !important;
+    --border: rgba(255, 251, 243, 0.05) !important;
   }
 
   body {
@@ -62,6 +70,7 @@ const { title } = Astro.props;
     margin: 0px !important;
   }
   * {
+    scroll-behavior: smooth;
     color: var(--color) !important;
     font-family:
       "Playfair Display",

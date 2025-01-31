@@ -1,0 +1,62 @@
+---
+import type { Position, DateInfo } from "../../../typings/linkedin";
+
+interface Props {
+  experience: Position[];
+}
+
+const { experience } = Astro.props;
+
+function calculateDuration(start: DateInfo, end: DateInfo): string {
+  const startDate = new Date(start.year, start.month - 1, 1);
+  const endDate = end.year !== 0 ? new Date(end.year, end.month - 1, 1) : new Date();
+  const totalMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+  
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  return `${years > 0 ? `${years} yr${years > 1 ? 's' : ''} ` : ''}${months > 0 ? `${months} mo${months > 1 ? 's' : ''}` : ''}`.trim();
+}
+
+const sortedExperience = experience?.sort((a, b) => {
+  if (!a.start || !b.start) return 0;
+  const dateA = new Date(a.start.year, a.start.month - 1, 1);
+  const dateB = new Date(b.start.year, b.start.month - 1, 1);
+  return dateB.getTime() - dateA.getTime();
+});
+
+---
+
+<div class="experience-section grid grid-cols-1 xl:grid-cols-2 gap-6 md:p-4 mt-6 md:mt-0">
+  {sortedExperience?.map((position, index) => (
+    <div
+      class={`experience-item flex gap-4 group lg:p-4 min-h-24 relative ${index > 0 && sortedExperience[index - 1]?.companyName === position.companyName ? 'border-t-0' : ''} transition-shadow duration-200`}
+    >
+      {index > 0 && sortedExperience[index - 1]?.companyName === position.companyName && (
+        <div class="absolute -top-6 left-7 w-0.5 h-6 border-l-2 border-dashed border-color opacity-30"></div>
+      )}
+      <img
+        src={position.companyLogo}
+        alt={position.companyName}
+        class="w-14 h-14 rounded-md  border border-black/10 transition duration-300"
+      />
+      <div class="flex flex-col justify-start w-full">
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="text-lg font-semibold text-color">{position.title}</h3>
+            <a href={position.companyURL} target="_blank" rel="noopener noreferrer" class="text-color opacity-80">
+              {position.companyName}
+            </a>
+          </div>
+          <div class="text-right text-sm text-color ">
+            <p class="opacity-70">{position.location?.split(',')[0]}</p>
+            <p class="text-xs opacity-30">{position.employmentType}</p>
+          </div>
+        </div>
+        <p class="text-sm text-color mt-1 font-system opacity-60">
+          {position.start && new Date(position.start.year, position.start.month - 1).toLocaleString('en-US', { month: 'short' })} {position.start?.year} - {(position.end && (position.end.year !== 0 || position.end.month !== 0)) ? `${new Date(position.end.year, position.end.month - 1).toLocaleString('en-US', { month: 'short' })} ${position.end.year}` : 'Present'} 
+          <span class=" font-system">• {position.start && position.end && calculateDuration(position.start, position.end)}</span>
+        </p>
+      </div>
+    </div>
+  ))}
+</div>

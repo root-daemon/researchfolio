@@ -2,21 +2,151 @@
   "name": "Rahul Marban",
   "email": "rahulmarban@gmail.com",
   "biography": "",
+  "resume": "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Rahuletto/auto-resume/main/resume.pdf",
   "github": "https://github.com/rahuletto",
   "location": "India",
+  "linkedin": "https://www.linkedin.com/in/rahul-marban",
+  "experience": [
+    {
+      "companyName": "SRM Innovation and Incubation Centre",
+      "companyURL": "https://www.linkedin.com/school/srmdei/",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQFMgg5KrYsRNg/company-logo_400_400/company-logo_400_400/0/1728041468017/srmdei_logo?e=1746662400&v=beta&t=hRYCid5pES8TNGqPaAp6bQWR3fxK_TQlbC7ffdIBfdk",
+      "title": "Frontend Developer Intern",
+      "location": "Chennai, Tamil Nadu, India",
+      "employmentType": "Internship",
+      "start": {
+        "year": 2025,
+        "month": 1,
+        "day": 0
+      },
+      "end": {
+        "year": 0,
+        "month": 0,
+        "day": 0
+      }
+    },
+    {
+      "companyName": "Turn2Law",
+      "companyURL": "https://www.linkedin.com/company/turn2law/",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQHTGous8H7fCw/company-logo_400_400/company-logo_400_400/0/1731761473493?e=1746662400&v=beta&t=OLHrk9npPiVQIgeaXkUKixr3eBPJR_6be_YbXBS-7Ds",
+      "title": "Chief Design Officer",
+      "location": "Chennai, Tamil Nadu, India",
+      "employmentType": "Full-time",
+      "start": {
+        "year": 2024,
+        "month": 11,
+        "day": 0
+      },
+      "end": {
+        "year": 0,
+        "month": 0,
+        "day": 0
+      }
+    },
+    {
+      "companyName": "Neugence Technology Pvt Ltd",
+      "companyURL": "https://www.linkedin.com/company/neugence/",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQG6Tea7MQS1Sw/company-logo_400_400/company-logo_400_400/0/1733347950531/neugence_logo?e=1746662400&v=beta&t=0IumQsy4v8b_FZKGeMVVTXeAfMOJKRxc-IV_EOLVGWM",
+      "title": "Full Stack Software Development Intern",
+      "location": "Remote",
+      "employmentType": "Internship",
+      "start": {
+        "year": 2024,
+        "month": 8,
+        "day": 0
+      },
+      "end": {
+        "year": 0,
+        "month": 0,
+        "day": 0
+      }
+    },
+    {
+      "companyName": "Next Tech Lab",
+      "companyURL": "https://www.linkedin.com/company/next-tech-lab/",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C510BAQGikFtlBr3v3A/company-logo_400_400/company-logo_400_400/0/1631390746546?e=1746662400&v=beta&t=QrjA5Uy10d7O1w2YQOe0en0ptB7LKnljyZBnCnFhk7c",
+      "title": "Associate - Norman Lab",
+      "location": "Chennai, Tamil Nadu, India",
+      "employmentType": "Full-time",
+      "start": {
+        "year": 2024,
+        "month": 8,
+        "day": 0
+      },
+      "end": {
+        "year": 0,
+        "month": 0,
+        "day": 0
+      }
+    },
+    {
+      "companyName": "Google Developer Student Clubs SRM",
+      "companyURL": "https://www.linkedin.com/company/gdgsrm/",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C560BAQHtS3OdZ0Kr8Q/company-logo_400_400/company-logo_400_400/0/1630624490752?e=1746662400&v=beta&t=zngILU4xzVqlmMhfzx2KlVgbR0R7gAU-bCgWGBme88o",
+      "title": "Technical Member",
+      "location": "SRM University, Kattankulathur",
+      "employmentType": "Full-time",
+      "start": {
+        "year": 2024,
+        "month": 4,
+        "day": 0
+      },
+      "end": {
+        "year": 0,
+        "month": 0,
+        "day": 0
+      }
+    },
+    {
+      "companyName": "Microsoft Learn Student Ambassadors SRM",
+      "companyURL": "https://www.linkedin.com/company/mlsa-srm/",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/C4E0BAQEq8dvxYn2RYw/company-logo_400_400/company-logo_400_400/0/1630624717682/mspc_srm_logo?e=1746662400&v=beta&t=Es5akjunaPxxBf2BAbTlVu87okyHkvPElm5DevLhjjQ",
+      "title": "Technical Associate",
+      "location": "Chennai, Tamil Nadu, India",
+      "employmentType": "Full-time",
+      "start": {
+        "year": 2023,
+        "month": 9,
+        "day": 0
+      },
+      "end": {
+        "year": 2024,
+        "month": 10,
+        "day": 0
+      }
+    },
+    {
+      "companyName": "Dreamnity",
+      "companyURL": "https://www.linkedin.com/company/dreamnity/",
+      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQFC5-Yrw4o_Tw/company-logo_400_400/company-logo_400_400/0/1718265329081/dreamnity_logo?e=1746662400&v=beta&t=UQhXmpRp6D5Dl5Swy8P9G0qUMn50nN14-pn85WbhIx8",
+      "title": "Co-Founder and CTO",
+      "location": "Chennai, Tamil Nadu, India",
+      "employmentType": "Full-time",
+      "start": {
+        "year": 2023,
+        "month": 5,
+        "day": 0
+      },
+      "end": {
+        "year": 2024,
+        "month": 6,
+        "day": 0
+      }
+    }
+  ],
   "skills": {
     "frontend": [
-      "HTML",
-      "CSS",
+      "HTML & CSS",
       "JavaScript",
       "React",
       "Typescript",
       "Astro",
       "NextJS",
-      "SolidJS"
+      "SolidJS",
+      "Fresh"
     ],
-    "backend": ["Node.js", "Express", "Hono", "ElysiaJS"],
-    "database": ["MongoDB", "MySql", "Postgres", "Firebase"],
-    "others": ["Python", "Java", "C++", "C", "React Native"]
+    "backend": ["Node.js", "Deno", "Express", "Hono", "ElysiaJS", "FastAPI"],
+    "database": ["MongoDB", "MySql", "Postgres", "Firebase", "Supabase", "Cloudflare D1"],
+    "others": ["Python", "Java", "C++", "C", "Cheerio", "React Native"]
   }
 }

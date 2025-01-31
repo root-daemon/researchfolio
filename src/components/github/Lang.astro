@@ -1,0 +1,72 @@
+---
+import type { RepoEdges, GitHubQueryResponse } from "../../../typings/github";
+
+interface Props {
+  data: GitHubQueryResponse;
+}
+
+const { data } = Astro.props;
+
+
+function calculateLanguageStats(repositories: RepoEdges[]) {
+  const languageMap = new Map<string, { size: number; color: string }>();
+  let totalSize = 0;
+
+  repositories.forEach((repo) => {
+    const languages = repo.node.languages.edges;
+    if (languages) {
+      languages.forEach((lang) => {
+        const name = lang.node.name;
+        const size = lang.size;
+        const color = lang.node.color;
+
+        if (languageMap.has(name)) {
+          languageMap.get(name)!.size += size;
+        } else {
+          languageMap.set(name, { size, color });
+        }
+
+        totalSize += size;
+      });
+    }
+  });
+
+  const languageStats: {name: string; percent: number}[] = [];
+  languageMap.forEach((value, key) => {
+    const { size } = value;
+    const percent = (size / totalSize) * 100;
+    const stat = {
+      name: key,
+      percent: parseFloat(percent.toFixed(2)),
+    };
+    languageStats.push(stat);
+  });
+
+  languageStats.sort((a, b) => b.percent - a.percent);
+
+  return languageStats;
+}
+
+const langs = calculateLanguageStats(data.data.user.repositories.edges);
+---
+
+<div
+  class="flex w-full flex-col xl:pl-12 xl:border-l border-t mt-12 xl:border-t-0 xl:mt-0 pt-12 xl:pt-0 pl-0 border-border gap-2"
+>
+  {
+    langs.slice(0, 6).map((language) => (
+      <div class="flex items-center justify-start w-full gap-4">
+        <span class="text-lg font-semibold w-[150px]">{language.name}</span>
+
+        <div
+          class="progress-bar bg-color rounded-3xl h-0.5 transition-all duration-100 cursor-pointer"
+          style={{ width: `${language.percent * 3}px` }}
+        />
+
+        <div class="text-color text-base opacity-80 font-system font-extrabold">
+          {language.percent.toFixed(2)}%
+        </div>
+      </div>
+    ))
+  }
+</div>
