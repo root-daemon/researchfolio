@@ -1,0 +1,25 @@
+---
+import dataJson from "../../data.json";
+---
+
+<ul
+    class="relative grid grid-cols-1 lg:grid-cols-2 text-color"
+>
+    {
+        dataJson.acheivements.map((category) => (
+            <li class="my-4 marker:text-color list-disc ml-5">
+                <div class="flex flex-col border-l border-border  pb-2 pl-4 -ml-3 border-opacity-30">
+                    <h3 class="text-xl font-semibold capitalize">
+                        {category.title}
+                    </h3>
+                    {category.date && (
+                            <span class="text-sm opacity-50 mb-3">
+                                {category.date}
+                            </span>
+                        )}
+                    <p class="mb-1">{category.description}</p>
+                </div>
+            </li>
+        ))
+    }
+</ul>

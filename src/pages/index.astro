@@ -8,6 +8,7 @@ import ProjectsGrid from "../components/ProjectsGrid.astro";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaMapPin } from "react-icons/fa6";
 import Skills from "../components/Skills.astro";
+import Acheivements from "../components/Acheivements.astro";
 
 import type { GitHubQueryResponse } from "../../typings/github";
 import Experience from "../components/linkedin/Experience.astro";
@@ -181,6 +182,16 @@ const data: GitHubQueryResponse = await graph.json();
           </h2>
 
           <Skills />
+        </section>
+
+        <section id="achievements" >
+          <h2
+            class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
+          >
+            Acheivements
+          </h2>
+
+          <Acheivements />
         </section>
       </div>
     </div>

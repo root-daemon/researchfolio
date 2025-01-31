@@ -148,5 +148,22 @@
     "backend": ["Node.js", "Deno", "Express", "Hono", "ElysiaJS", "FastAPI"],
     "database": ["MongoDB", "MySql", "Postgres", "Firebase", "Supabase", "Cloudflare D1"],
     "others": ["Python", "Java", "C++", "C", "Cheerio", "React Native"]
-  }
+  },
+  "acheivements": [
+    {
+      "title": "Hackathon Winner - Hack4Bengal",
+      "description": "Won first place in Hack4Bengal 2.0 hackathon for innovative solution",
+      "date": "Jul 2023"
+    },
+    {
+      "title": "Research Paper Publication",
+      "description": "Published research paper on AI-driven web development in IEEE conference",
+      "date": "Dec 2023"
+    },
+    {
+      "title": "Open Source Contributor",
+      "description": "Active contributor to various open source projects with over 50+ contributions",
+      "date": "2023-2024"
+    }
+  ]
 }
