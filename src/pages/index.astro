@@ -6,13 +6,12 @@ import Socials from "../components/Socials.astro";
 import Theme from "../components/Theme.astro";
 import ProjectsGrid from "../components/ProjectsGrid.astro";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { FaMapPin } from "react-icons/fa6";
+import { FaGithub, FaMapPin } from "react-icons/fa6";
 import Skills from "../components/Skills.astro";
 import Acheivements from "../components/Acheivements.astro";
 
 import type { GitHubQueryResponse } from "../../typings/github";
 import Experience from "../components/linkedin/Experience.astro";
-
 
 const graph = await fetch("https://api.github.com/graphql", {
   method: "POST",
@@ -91,8 +90,6 @@ const graph = await fetch("https://api.github.com/graphql", {
 });
 
 const data: GitHubQueryResponse = await graph.json();
-
-
 ---
 
 <Layout title={dataJson.name}>
@@ -137,8 +134,8 @@ const data: GitHubQueryResponse = await graph.json();
           </div>
 
           <a
-          target="_blank"
-          href=`${dataJson.resume}`
+            target="_blank"
+            href=`${dataJson.resume}`
             class="bg-background text-color hover:bg-color hover:text-background px-4 py-2 font-semibold border border-color"
           >
             Resume
@@ -174,7 +171,7 @@ const data: GitHubQueryResponse = await graph.json();
           <Experience experience={dataJson.experience} />
         </section>
 
-        <section id="skills" >
+        <section id="skills">
           <h2
             class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
           >
@@ -184,7 +181,7 @@ const data: GitHubQueryResponse = await graph.json();
           <Skills />
         </section>
 
-        <section id="achievements" >
+        <section id="achievements">
           <h2
             class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
           >
@@ -193,6 +190,21 @@ const data: GitHubQueryResponse = await graph.json();
 
           <Acheivements />
         </section>
+        <div class="py-12 flex justify-between items-center">
+          <p>
+            Made from a template, By <a
+              href="https://marban.is-a.dev"
+              target="_blank">Marban</a
+            >
+          </p>
+          <a
+            href="https://github.com/rahuletto/researchfolio"
+            target="_blank"
+            class="text-color text-xl"
+          >
+            <FaGithub /></a
+          >
+        </div>
       </div>
     </div>
   </main>
@@ -233,8 +245,8 @@ const data: GitHubQueryResponse = await graph.json();
 
     const options = {
       root: null,
-      rootMargin: '-20% 0px -20% 0px',  // Add margin to improve trigger area
-      threshold: [0, 0.25, 0.5, 0.75, 1],  // Multiple thresholds for smoother transitions
+      rootMargin: "-20% 0px -20% 0px", // Add margin to improve trigger area
+      threshold: [0, 0.25, 0.5, 0.75, 1], // Multiple thresholds for smoother transitions
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -243,17 +255,18 @@ const data: GitHubQueryResponse = await graph.json();
       entries.forEach((entry) => {
         const sectionTitle = entry.target.querySelector("h2")?.innerText.trim();
         const navItem = Array.from(sidebarLinksContainer.children).find(
-          (item) => item.textContent?.trim() === sectionTitle
+          (item) => item.textContent?.trim() === sectionTitle,
         );
 
         if (navItem) {
-          const progressBar: HTMLElement | null = navItem.querySelector(".progress-bar");
+          const progressBar: HTMLElement | null =
+            navItem.querySelector(".progress-bar");
           if (progressBar) {
             if (entry.isIntersecting) {
               // Calculate progress based on intersection ratio
               const progress = Math.min(entry.intersectionRatio * 100, 50);
               progressBar.style.width = `${progress}%`;
-              progressBar.style.opacity = `${0.3 + (entry.intersectionRatio * 0.3)}`;
+              progressBar.style.opacity = `${0.3 + entry.intersectionRatio * 0.3}`;
             } else {
               progressBar.style.width = "15%";
               progressBar.style.opacity = "0.3";
@@ -271,30 +284,32 @@ const data: GitHubQueryResponse = await graph.json();
     function updateProgressBars() {
       const sections = document.querySelectorAll("section");
       const viewportHeight = window.innerHeight;
-    
+
       requestAnimationFrame(() => {
         sections.forEach((section) => {
           const sectionTitle = section.querySelector("h2")?.innerText.trim();
-          const navItem = Array.from(sidebarLinksContainer?.children || []).find(
-            (item) => item.textContent?.trim() === sectionTitle
-          );
-    
+          const navItem = Array.from(
+            sidebarLinksContainer?.children || [],
+          ).find((item) => item.textContent?.trim() === sectionTitle);
+
           if (navItem) {
-            const progressBar = navItem.querySelector(".progress-bar") as HTMLElement;
+            const progressBar = navItem.querySelector(
+              ".progress-bar",
+            ) as HTMLElement;
             const sectionRect = section.getBoundingClientRect();
             const distanceFromViewport = sectionRect.top;
-            
+
             const viewportCenter = viewportHeight / 2;
             const distance = Math.abs(distanceFromViewport - viewportCenter);
             const maxDistance = viewportHeight * 0.8; // Reduced max distance for better sensitivity
-            const progress = Math.max(0, 1 - (distance / maxDistance));
-            
+            const progress = Math.max(0, 1 - distance / maxDistance);
+
             // Smoother thresholds
-            const width = progress > 0.8 ? 50 : 15 + (progress * 35);
-            const opacity = progress > 0.8 ? 1 : 0.3 + (progress * 0.7);
-            
-            progressBar.style.setProperty('width', `${width}%`);
-            progressBar.style.setProperty('opacity', `${opacity}`);
+            const width = progress > 0.8 ? 50 : 15 + progress * 35;
+            const opacity = progress > 0.8 ? 1 : 0.3 + progress * 0.7;
+
+            progressBar.style.setProperty("width", `${width}%`);
+            progressBar.style.setProperty("opacity", `${opacity}`);
           }
         });
       });
