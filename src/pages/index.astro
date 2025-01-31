@@ -132,14 +132,6 @@ const data: GitHubQueryResponse = await graph.json();
             <FaMapPin size={16} />
             <span class="text-lg">{dataJson.location}</span>
           </div>
-
-          <a
-            target="_blank"
-            href=`${dataJson.resume}`
-            class="bg-background text-color hover:bg-color hover:text-background px-4 py-2 font-semibold border border-color"
-          >
-            Resume
-          </a>
         </div>
       </aside>
 
@@ -196,7 +188,41 @@ const data: GitHubQueryResponse = await graph.json();
             <Acheivements />
           </section>
         )}
-        <div class="py-12 flex justify-between items-center">
+
+        <section id="contact" class="min-h-[30vh] mb-12">
+          <h2
+            class="text-3xl font-semibold my-2 bg-background px-2 py-1 rounded-lg w-fit z-10 -m-2"
+          >
+            Contact
+          </h2>
+          
+          <div class="mt-8 flex flex-col gap-6">
+            <p class="text-lg opacity-90">
+              Feel free to reach out for collaborations, opportunities, or just to say hello!
+            </p>
+            
+            <div class="flex flex-col gap-6">
+
+              <Socials
+                contact
+                nodes={data?.data?.user?.socialAccounts?.nodes || []}
+                github={dataJson.github.replace("https://github.com/", "")}
+              />
+
+              {dataJson.resume && (
+                <a
+                  target="_blank"
+                  href={dataJson.resume}
+                  class="bg-background w-fit text-color hover:bg-color hover:text-background px-4 py-2 font-semibold border border-color"
+                >
+                  Resume
+                </a>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <div class="py-12 flex justify-between items-center border-t border-border border-opacity-30">
           <p>
             Made from a template, By <a
               href="https://marban.is-a.dev"
