@@ -29,7 +29,9 @@ const sortedExperience = experience?.sort((a, b) => {
 <div class="experience-section grid grid-cols-1 xl:grid-cols-2 gap-6 md:p-4 mt-6 md:mt-0">
   {sortedExperience?.map((position, index) => (
     <div
-      class={`experience-item flex gap-4 group lg:p-4 min-h-24 relative ${index > 0 && sortedExperience[index - 1]?.companyName === position.companyName ? 'border-t-0' : ''} transition-shadow duration-200`}
+      class={`experience-item flex gap-4 group lg:p-4 min-h-24 relative ${
+        index > 0 && sortedExperience[index - 1]?.companyName === position.companyName ? 'border-t-0' : ''
+      } transition-all duration-200 hover:bg-black/[0.02] rounded-xl cursor-pointer`}
     >
       {index > 0 && sortedExperience[index - 1]?.companyName === position.companyName && (
         <div class="absolute -top-6 left-7 w-0.5 h-6 border-l-2 border-dashed border-color opacity-30"></div>
@@ -37,7 +39,7 @@ const sortedExperience = experience?.sort((a, b) => {
       <img
         src={position.companyLogo}
         alt={position.companyName}
-        class="w-14 h-14 rounded-md  border border-black/10 transition duration-300"
+        class="w-14 h-14 rounded-md border border-black/10 transition duration-300"
       />
       <div class="flex flex-col justify-start w-full">
         <div class="flex justify-between items-start">
@@ -56,7 +58,51 @@ const sortedExperience = experience?.sort((a, b) => {
           {position.start && new Date(position.start.year, position.start.month - 1).toLocaleString('en-US', { month: 'short' })} {position.start?.year} - {(position.end && (position.end.year !== 0 || position.end.month !== 0)) ? `${new Date(position.end.year, position.end.month - 1).toLocaleString('en-US', { month: 'short' })} ${position.end.year}` : 'Present'} 
           <span class=" font-system">• {position.start && position.end && calculateDuration(position.start, position.end)}</span>
         </p>
+        {position.description && (
+          <div class="description font-system mt-3 text-sm text-color opacity-0 max-h-0 overflow-hidden bg-black/5 rounded-xl transition-all duration-300 ease-in-out">
+            <div class="p-4">
+              {position.description.split('\n').map((text) => (
+                text.trim().startsWith('- ') ? (
+                  <ul class="list-disc ml-4 mb-2">
+                    <li>{text.substring(2)}</li>
+                  </ul>
+                ) : (
+                  <p class="mb-2">{text}</p>
+                )
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   ))}
 </div>
+
+<style>
+  .experience-item {
+    transition: background-color 0.2s ease;
+  }
+  
+  .description.active {
+    opacity: 0.8;
+    max-height: 500px;
+    margin-top: 0.75rem;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.experience-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      if ((e.target as any)?.closest('a')) return;
+      const description = item.querySelector('.description');
+      if (description) {
+        document.querySelectorAll('.description').forEach(desc => {
+          if (desc !== description) {
+            desc.classList.remove('active');
+          }
+        });
+        description.classList.toggle('active');
+      }
+    });
+  });
+</script>
