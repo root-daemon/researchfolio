@@ -132,6 +132,15 @@ const data: GitHubQueryResponse = await graph.json();
             <FaMapPin size={16} />
             <span class="text-lg">{dataJson.location}</span>
           </div>
+          {dataJson.resume && (
+            <a
+              target="_blank"
+              href={dataJson.resume}
+              class="bg-background w-fit text-color hover:bg-color hover:text-background px-4 py-2 font-semibold border border-color"
+            >
+              Resume
+            </a>
+          )}
         </div>
       </aside>
 
