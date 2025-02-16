@@ -134,8 +134,8 @@ const data: GitHubQueryResponse = await graph.json();
           </div>
           {dataJson.resume && (
             <a
-              target="_blank"
-              href={dataJson.resume}
+              href="/resume.pdf"
+              download
               class="bg-background w-fit text-color hover:bg-color hover:text-background px-4 py-2 font-semibold border border-color"
             >
               Resume
@@ -147,7 +147,7 @@ const data: GitHubQueryResponse = await graph.json();
       <div class="flex flex-col gap-32">
         <section id="projects" class="min-h-screen">
           <a
-            href=`${dataJson.github}/repositories`
+            href=`${dataJson.github}?tab=repositories`
             class="flex items-center cursor-pointer gap-4 hover:gap-8 transition-all duration-100 flex-row mb-4"
           >
             <h2
@@ -220,8 +220,8 @@ const data: GitHubQueryResponse = await graph.json();
 
               {dataJson.resume && (
                 <a
-                  target="_blank"
-                  href={dataJson.resume}
+                  href="/resume.pdf"
+                  download
                   class="bg-background w-fit text-color hover:bg-color hover:text-background px-4 py-2 font-semibold border border-color"
                 >
                   Resume
