@@ -36,11 +36,14 @@ const sortedExperience = experience?.sort((a, b) => {
       {index > 0 && sortedExperience[index - 1]?.companyName === position.companyName && (
         <div class="absolute -top-6 left-7 w-0.5 h-6 border-l-2 border-dashed border-color opacity-30"></div>
       )}
+      {/*
+      // Temporarily removed the company logo
       <img
         src={position.companyLogo}
         alt={position.companyName}
         class="w-14 h-14 rounded-md border border-black/10 transition duration-300"
       />
+      */}
       <div class="flex flex-col justify-start w-full">
         <div class="flex justify-between items-start">
           <div>
