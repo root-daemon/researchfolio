@@ -2,16 +2,17 @@
 import type { Repository } from '../../typings/github';
 
 interface Props {
-  repositories: Repository[]
+  repositories: Repository[];
+  initialDisplayCount: number;
 }
 
-const { repositories } = Astro.props;
+const { repositories, initialDisplayCount } = Astro.props;
 ---
 
 <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-  {repositories?.map((repo) => (
+  {repositories?.map((repo, index) => (
     <div 
-      class="group relative flex flex-col gap-3 p-2 cursor-pointer repo"
+      class={`group relative flex flex-col gap-3 p-2 cursor-pointer repo ${index >= initialDisplayCount ? 'hidden' : ''}`}
       id={repo.name}
       data-url={repo.url}
     >
@@ -37,16 +38,30 @@ const { repositories } = Astro.props;
   ))}
 </div>
 
-<script type="application/json" id="repositories-data">
-    {Astro.toJson(repositories)}
-</script>
-
 <script>
+  let showingAll = false;
+  const toggleButton = document.getElementById('toggle-projects');
+  const repos = document.querySelectorAll('.repo');
+  const initialDisplayCount = Number(repos[0]?.getAttribute('data-initial-count')) || 9;
+
+  toggleButton?.addEventListener('click', () => {
+    showingAll = !showingAll;
+    repos.forEach((repo, index) => {
+      if (index >= initialDisplayCount) {
+        repo.classList.toggle('hidden');
+      }
+    });
+    
+    if (toggleButton) {
+      toggleButton.textContent = showingAll ? 'Show Less Projects' : 'Show All Projects';
+    }
+  });
+
   document.querySelectorAll('.repo').forEach((el) => {
     el.addEventListener('click', () => {
       const repoUrl = el.getAttribute('data-url');
       if (repoUrl) {
-        window.open(repoUrl, '_blank')?.focus()
+        window.open(repoUrl, '_blank')?.focus();
       }
     });
   });
