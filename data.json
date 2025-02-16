@@ -1,53 +1,30 @@
 {
-  "name": "Rahul Marban",
-  "email": "rahulmarban@gmail.com",
+  "name": "SRIVISHAL S",
+  "email": "srivishalsivasburamanian@gmail.com",
   "biography": "",
   "phone": "",
   "links": {
-    "github": "",
+    "github": "https://github.com/root-daemon",
     "twitter": "",
     "linkedin": ""
   },
   "resume": "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Rahuletto/auto-resume/main/resume.pdf",
-  "github": "https://github.com/rahuletto",
+  "github": "https://github.com/root-daemon",
   "location": "India",
   "linkedin": "https://www.linkedin.com/in/rahul-marban",
   "experience": [
     {
-      "companyName": "SRM Innovation and Incubation Centre",
-      "companyURL": "https://www.linkedin.com/school/srmdei/",
-      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQFMgg5KrYsRNg/company-logo_400_400/company-logo_400_400/0/1728041468017/srmdei_logo?e=1746662400&v=beta&t=hRYCid5pES8TNGqPaAp6bQWR3fxK_TQlbC7ffdIBfdk",
-      "title": "Frontend Developer Intern",
+      "companyName": "XARWIN",
+      "companyURL": "",
+      "companyLogo": "",
+      "title": "Full Stack Developer",
       "location": "Chennai, Tamil Nadu, India",
-      "description": "- Revamped over 60 web pages to modernize the website, elevating user engagement and ensuring an intuitive interface that resulted in a measurable increase in user satisfaction metrics gathered through post-launch surveys.\n- Collaborated with a small team of 2 developers over 6 months to deliver a high-quality web solution.\n- Maintained consistent communication to gather requirements, provide updates, and successfully developed 3+ websites.",
-      "employmentType": "Internship",
-      "start": {
-        "year": 2025,
-        "month": 1,
-        "day": 0
-      },
-      "end": {
-        "year": 0,
-        "month": 0,
-        "day": 0
-      }
-    },
-    {
-
-      "companyName": "Turn2Law",
-
-      "companyURL": "https://www.linkedin.com/company/turn2law/",
-      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQHTGous8H7fCw/company-logo_400_400/company-logo_400_400/0/1731761473493?e=1746662400&v=beta&t=OLHrk9npPiVQIgeaXkUKixr3eBPJR_6be_YbXBS-7Ds",
-
-
-      "title": "Chief Design Officer",
-      "location": "Chennai, Tamil Nadu, India",
-      "description": "- Led the creative direction for a team of 5+ designers and developers, ensuring alignment with brand vision and user needs.\n-  Transformed the platform\u2019s UI/UX by designing intuitive navigation features, leading to a 20% surge in user engagement and enhanced customer satisfaction metrics based on direct feedback from usability testing sessions.",
+      "description": "• Engineered an integrated dashboard using Next.js and FastAPI that streamlined the conversion of 2D images into interactive 3D models, reducing processing time by 30% and boosting user engagement by 20%.\n• Spearheaded the design and execution of a high-efficiency image processing workflow that transforms 2D visuals into detailed 3D representations, cutting conversion errors by 15% and accelerating processing by 25%.\n• Optimized deployment by containerizing the application with Docker and launching it on Google Cloud Platform (GCP), enhancing system scalability by 35% and reducing maintenance efforts by 20%.\n• Incorporated interactive WebAR features into the dashboard, increasing user interaction by 40% and delivering an immersive augmented reality experience.",
       "employmentType": "Full-time",
       "start": {
         "year": 2024,
-        "month": 11,
-        "day": 0
+        "month": 12,
+        "day": 1
       },
       "end": {
         "year": 0,
@@ -56,56 +33,17 @@
       }
     },
     {
-      "companyName": "Neugence Technology Pvt Ltd",
-      "companyURL": "https://www.linkedin.com/company/neugence/",
-      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQG6Tea7MQS1Sw/company-logo_400_400/company-logo_400_400/0/1733347950531/neugence_logo?e=1746662400&v=beta&t=0IumQsy4v8b_FZKGeMVVTXeAfMOJKRxc-IV_EOLVGWM",
-      "title": "Full Stack Software Development Intern",
-      "location": "Remote",
-      "description": "- Evolved and launched 2 fully functional websites as a frontend developer, ensuring seamless user experiences and adherence to project deadlines.\n- Tailored and implemented responsive web designs, increasing user engagement by 38% through refined accessibility and cross-device compatibility.\n- Migrated the entire codebase to Vite, reducing development cycle times by 25%, resulting in faster feature delivery and team productivity better than before.",
-      "employmentType": "Internship",
-      "start": {
-        "year": 2024,
-        "month": 8,
-        "day": 0
-      },
-      "end": {
-        "year": 0,
-        "month": 0,
-        "day": 0
-      }
-    },
-    {
-      "companyName": "Next Tech Lab",
-      "companyURL": "https://www.linkedin.com/company/next-tech-lab/",
-      "companyLogo": "https://media.licdn.com/dms/image/v2/C510BAQGikFtlBr3v3A/company-logo_400_400/company-logo_400_400/0/1631390746546?e=1746662400&v=beta&t=QrjA5Uy10d7O1w2YQOe0en0ptB7LKnljyZBnCnFhk7c",
-      "companyIndustry": "Research",
-      "title": "Associate - Norman Lab",
+      "companyName": "Scribe of AI",
+      "companyURL": "",
+      "companyLogo": "",
+      "title": "Front End Developer",
       "location": "Chennai, Tamil Nadu, India",
-      "description": "Led the development of the admin portal for NextTech Lab, ensuring robust architecture and smooth user experiences, resulting in a 25% improvement in task completion time. Utilised modern frameworks to deliver scalable and maintainable code, supporting future scalability for up to 1000+ users.",
-      "employmentType": "Full-time",
-      "start": {
-        "year": 2024,
-        "month": 8,
-        "day": 0
-      },
-      "end": {
-        "year": 0,
-        "month": 0,
-        "day": 0
-      }
-    },
-    {
-      "companyName": "Google Developer Student Clubs SRM",
-      "companyURL": "https://www.linkedin.com/company/gdgsrm/",
-      "companyLogo": "https://media.licdn.com/dms/image/v2/C560BAQHtS3OdZ0Kr8Q/company-logo_400_400/company-logo_400_400/0/1630624490752?e=1746662400&v=beta&t=zngILU4xzVqlmMhfzx2KlVgbR0R7gAU-bCgWGBme88o",
-      "title": "Technical Member",
-      "location": "SRM University, Kattankulathur",
-      "description": "Contributed to the GDSC website redevelopment project using Next.js and TypeScript, resulting in a 15% reduction in page load times.\n- Focused on optimising code quality and optimising the code, making a ~20% improvement in overall performance metrics",
+      "description": "• Crafted a visually appealing landing page using Astro, enhancing the website’s aesthetic appeal and increasing visitor retention by 30%.\n• Implemented a reliable contact form with NodeMailer, streamlining user inquiries and boosting team communication by 25%.",
       "employmentType": "Full-time",
       "start": {
         "year": 2024,
         "month": 4,
-        "day": 0
+        "day": 1
       },
       "end": {
         "year": 0,
@@ -114,41 +52,41 @@
       }
     },
     {
-      "companyName": "Microsoft Learn Student Ambassadors SRM",
-      "companyURL": "https://www.linkedin.com/company/mlsa-srm/",
-      "companyLogo": "https://media.licdn.com/dms/image/v2/C4E0BAQEq8dvxYn2RYw/company-logo_400_400/company-logo_400_400/0/1630624717682/mspc_srm_logo?e=1746662400&v=beta&t=Es5akjunaPxxBf2BAbTlVu87okyHkvPElm5DevLhjjQ",
-      "title": "Technical Associate",
+      "companyName": "GameUp Technologies (Proprietorship)",
+      "companyURL": "",
+      "companyLogo": "",
+      "title": "Full Stack Developer",
       "location": "Chennai, Tamil Nadu, India",
-      "description": "",
+      "description": "• Conceived a custom AI-powered chat application by integrating OpenAI’s API, facilitating seamless real-time conversations and improving response accuracy by 50%.\n• Orchestrated the development and deployment of a Flutter-based frontend with a backend built using NestJS, MongoDB, and Firebase, decreasing response times by 40% and elevating user satisfaction by 35%.\n• Devised an automated chatbot solution leveraging Flutter for UI, Firebase for authentication, and AWS services, resulting in a 30% reduction in manual support interventions.",
       "employmentType": "Full-time",
       "start": {
         "year": 2023,
-        "month": 9,
-        "day": 0
+        "month": 12,
+        "day": 1
       },
       "end": {
         "year": 2024,
-        "month": 10,
-        "day": 0
+        "month": 5,
+        "day": 1
       }
     },
     {
-      "companyName": "Dreamnity",
-      "companyURL": "https://www.linkedin.com/company/dreamnity/",
-      "companyLogo": "https://media.licdn.com/dms/image/v2/D560BAQFC5-Yrw4o_Tw/company-logo_400_400/company-logo_400_400/0/1718265329081/dreamnity_logo?e=1746662400&v=beta&t=UQhXmpRp6D5Dl5Swy8P9G0qUMn50nN14-pn85WbhIx8",
-      "title": "Co-Founder and CTO",
+      "companyName": "Nyx Wolves",
+      "companyURL": "",
+      "companyLogo": "",
+      "title": "Full Stack Software Development Intern",
       "location": "Chennai, Tamil Nadu, India",
-      "description": "Lead the technical direction of the startup with 5+ employees, leading a team to develop Dreamnity and maintain high-quality deliverables.",
-      "employmentType": "Full-time",
+      "description": "• Enhanced and maintained multiple web applications using React and Next.js, increasing platform performance by 25% and ensuring stability for over 10,000 monthly users.\n• Conceptualized and executed a Fabric.js-based project that enabled users to create and customize document structures, leading to a 20% improvement in user productivity.\n• Optimized full-stack applications by integrating React with backend technologies, achieving a 30% reduction in load times and streamlining deployment processes.",
+      "employmentType": "Internship",
       "start": {
         "year": 2023,
-        "month": 5,
-        "day": 0
+        "month": 4,
+        "day": 1
       },
       "end": {
-        "year": 2024,
-        "month": 6,
-        "day": 0
+        "year": 2023,
+        "month": 8,
+        "day": 1
       }
     }
   ],
@@ -164,7 +102,14 @@
       "Fresh"
     ],
     "backend": ["Node.js", "Deno", "Express", "Hono", "ElysiaJS", "FastAPI"],
-    "database": ["MongoDB", "MySql", "Postgres", "Firebase", "Supabase", "Cloudflare D1"],
+    "database": [
+      "MongoDB",
+      "MySql",
+      "Postgres",
+      "Firebase",
+      "Supabase",
+      "Cloudflare D1"
+    ],
     "others": ["Python", "Java", "C++", "C", "Cheerio", "React Native"]
   },
   "acheivements": [
