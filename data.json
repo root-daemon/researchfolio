@@ -1,18 +1,37 @@
 {
-  "name": "SRIVISHAL S",
-  "email": "srivishalsivasburamanian@gmail.com",
+  "name": "SRIVISHAL SIVASUBRAMANIAN",
+  "email": "srivishal.sivasubramanian@gmail.com",
   "biography": "",
-  "phone": "",
+  "phone": "+919344383408",
   "links": {
-    "github": "https://github.com/root-daemon",
+    "github": "",
     "twitter": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/srivishal-sivasubramanian"
   },
-  "resume": "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Rahuletto/auto-resume/main/resume.pdf",
+  "resume": "/resume.pdf",
   "github": "https://github.com/root-daemon",
-  "location": "India",
-  "linkedin": "https://www.linkedin.com/in/rahul-marban",
+  "location": "Chennai, Tamil Nadu, India",
+  "linkedin": "https://www.linkedin.com/in/srivishal-sivasubramanian",
   "experience": [
+    {
+      "companyName": "Meetstream",
+      "companyURL": "",
+      "companyLogo": "",
+      "title": "Lead Engineer",
+      "location": "San Francisco, California (Remote)",
+      "description": "• Owned and scaled a distributed video processing pipeline using AWS Lambda, Step Functions, ECS, SQS, and FFmpeg, enabling parallel audio and video chunk processing, dynamic participant layouts including screenshare and avatars, and accurate audio video synchronization for multi platform meeting recordings.\n• Implemented Google Calendar based scheduling and automation using OAuth, webhook driven event syncing, recurring event handling, EventBridge cron workflows, and DynamoDB GSI based deduplication to automatically schedule and manage meeting bots.\n• Built core backend systems for billing, credits, and administration by integrating Stripe payment intents and webhooks, designing DynamoDB backed credit and transaction flows, and developing secure serverless APIs with API Gateway and custom Lambda authorizers.",
+      "employmentType": "Full-time",
+      "start": {
+        "year": 2025,
+        "month": 2,
+        "day": 1
+      },
+      "end": {
+        "year": 0,
+        "month": 0,
+        "day": 0
+      }
+    },
     {
       "companyName": "XARWIN",
       "companyURL": "",
@@ -27,28 +46,9 @@
         "day": 1
       },
       "end": {
-        "year": 0,
-        "month": 0,
-        "day": 0
-      }
-    },
-    {
-      "companyName": "Scribe of AI",
-      "companyURL": "",
-      "companyLogo": "",
-      "title": "Front End Developer",
-      "location": "Chennai, Tamil Nadu, India",
-      "description": "• Crafted a visually appealing landing page using Astro, enhancing the website’s aesthetic appeal and increasing visitor retention by 30%.\n• Implemented a reliable contact form with NodeMailer, streamlining user inquiries and boosting team communication by 25%.",
-      "employmentType": "Full-time",
-      "start": {
-        "year": 2024,
-        "month": 4,
+        "year": 2025,
+        "month": 2,
         "day": 1
-      },
-      "end": {
-        "year": 0,
-        "month": 0,
-        "day": 0
       }
     },
     {
@@ -57,7 +57,7 @@
       "companyLogo": "",
       "title": "Full Stack Developer",
       "location": "Chennai, Tamil Nadu, India",
-      "description": "• Conceived a custom AI-powered chat application by integrating OpenAI’s API, facilitating seamless real-time conversations and improving response accuracy by 50%.\n• Orchestrated the development and deployment of a Flutter-based frontend with a backend built using NestJS, MongoDB, and Firebase, decreasing response times by 40% and elevating user satisfaction by 35%.\n• Devised an automated chatbot solution leveraging Flutter for UI, Firebase for authentication, and AWS services, resulting in a 30% reduction in manual support interventions.",
+      "description": "• Conceived a custom AI-powered chat application by integrating OpenAI's API, facilitating seamless real-time conversations and improving response accuracy by 50%.\n• Orchestrated the development and deployment of a Flutter-based frontend with a backend built using NestJS, MongoDB, and Firebase, decreasing response times by 40% and elevating user satisfaction by 35%.\n• Devised an automated chatbot solution leveraging Flutter for UI, Firebase for authentication, and AWS services, resulting in a 30% reduction in manual support interventions.",
       "employmentType": "Full-time",
       "start": {
         "year": 2023,
@@ -91,37 +91,57 @@
     }
   ],
   "skills": {
-    "frontend": [
-      "HTML & CSS",
+    "languages": [
       "JavaScript",
+      "TypeScript",
+      "Python",
+      "C",
+      "Java",
+      "Go",
+      "SQL"
+    ],
+    "frameworks": [
+      "Next.js",
       "React",
-      "Typescript",
       "Astro",
-      "NextJS",
-      "SolidJS",
-      "Fresh"
+      "Solid",
+      "Fresh",
+      "FastAPI",
+      "PyTorch",
+      "Express",
+      "Hono",
+      "Elysia",
+      "Fiber",
+      "React Native",
+      "Flutter",
+      "Tauri",
+      "AWS CDK",
+      "TailwindCSS"
     ],
-    "backend": ["Node.js", "Deno", "Express", "Hono", "ElysiaJS", "FastAPI"],
-    "database": [
+    "devops": [
+      "Docker",
+      "Linux",
+      "Google Cloud Platform",
+      "AWS"
+    ],
+    "tools": [
+      "Vercel",
+      "Bun",
+      "Git",
       "MongoDB",
-      "MySql",
-      "Postgres",
-      "Firebase",
-      "Supabase",
-      "Cloudflare D1"
-    ],
-    "others": ["Python", "Java", "C++", "C", "Cheerio", "React Native"]
+      "TanStack Query",
+      "tRPC",
+      "Stripe",
+      "DynamoDB",
+      "LiveKit",
+      "Supabase"
+    ]
   },
   "acheivements": [
     {
       "title": "ClassPro",
-      "description": "Serving over 15,000 monthly active users with 1.1M+ page views, ensuring scalability and stability for the platform.",
-      "date": "Feb 2023 - Present"
-    },
-    {
-      "title": "Hackathon Runner Up - Hack and Time",
-      "description": "Built a web application that helps with legal documents",
-      "date": "Dec 2024"
+      "description": "Typescript, React, Go, NextJS, Supabase — Serving over 15,000 monthly active users with 1.1M+ page views. Integrated a Golang Fiber server to scrape data, resulting in 40% faster data retrieval. Optimized platform performance to handle peak traffic, ensuring 99.9% uptime during critical academic periods.",
+      "date": ""
     }
   ]
 }
