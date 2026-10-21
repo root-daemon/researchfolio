@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, Draggable } from "@/lib/gsap";
+import { gsap, loadDraggable } from "@/lib/gsap";
 import { useLenis } from "@/components/providers/SmoothScroll";
 
 // Endless ticker. Scroll speed boosts it (in the scroll direction), and you can
 // grab and fling it — the throw coasts with inertia before it settles back.
+// It only ticks while on screen, and the drag plugins load the first time it gets close.
 export default function Marquee({ items }: { items: string[] }) {
+  const root = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
   const boost = useRef(0);
@@ -22,19 +24,34 @@ export default function Marquee({ items }: { items: string[] }) {
       x = wrap(x + dir * (0.05 + Math.abs(boost.current)) * dt);
       gsap.set(el, { x });
     };
-    gsap.ticker.add(tick);
 
-    const proxy = document.createElement("div");
-    let lastX = 0;
-    const [drag] = Draggable.create(proxy, {
-      type: "x",
-      trigger: el,
-      inertia: true,
-      onPress() { lastX = this.x; },
-      onDrag() { x = wrap(x + (this.x - lastX)); lastX = this.x; },
-      onThrowUpdate() { x = wrap(x + (this.x - lastX)); lastX = this.x; },
-    });
-    return () => { gsap.ticker.remove(tick); drag.kill(); };
+    let drag: { kill: () => void } | null = null;
+    let dead = false;
+    const enableDrag = async () => {
+      const Draggable = await loadDraggable();
+      if (dead || drag) return;
+      const proxy = document.createElement("div");
+      let lastX = 0;
+      [drag] = Draggable.create(proxy, {
+        type: "x",
+        trigger: el,
+        inertia: true,
+        onPress() { lastX = this.x; },
+        onDrag() { x = wrap(x + (this.x - lastX)); lastX = this.x; },
+        onThrowUpdate() { x = wrap(x + (this.x - lastX)); lastX = this.x; },
+      });
+    };
+
+    let ticking = false;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) void enableDrag();
+      if (e.isIntersecting === ticking) return;
+      ticking = e.isIntersecting;
+      if (ticking) gsap.ticker.add(tick);
+      else gsap.ticker.remove(tick);
+    }, { rootMargin: "200px 0px" });
+    io.observe(root.current!);
+    return () => { dead = true; io.disconnect(); gsap.ticker.remove(tick); drag?.kill(); };
   }, []);
 
   useEffect(() => {
@@ -48,7 +65,7 @@ export default function Marquee({ items }: { items: string[] }) {
 
   const row = items.map((s, i) => <span key={i} className="marquee-item">{s}<i aria-hidden /></span>);
   return (
-    <div className="marquee" data-cursor="big">
+    <div ref={root} className="marquee" data-cursor="big">
       <div ref={track} className="marquee-track">{row}{row}</div>
     </div>
   );

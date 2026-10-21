@@ -34,27 +34,23 @@ export default function Cursor() {
       const target = (e.target as HTMLElement).closest<HTMLElement>("[data-cursor], a, button, input");
       const m = target?.dataset.cursor ?? (target ? "link" : "");
       setMode(m, target?.dataset.cursorLabel ?? "");
+      pull(e);
     };
     const down = () => gsap.fromTo(el, { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(3)" });
 
-    // Magnetic buttons: pull toward the pointer, spring back elastically.
-    const magnets = new Map<HTMLElement, (e: PointerEvent) => void>();
-    const leave = (e: Event) => gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.9, ease: "elastic.out(1, 0.35)" });
-    const bindMagnets = () => {
-      document.querySelectorAll<HTMLElement>("[data-magnetic]").forEach((m) => {
-        if (magnets.has(m)) return;
-        const fn = (e: PointerEvent) => {
-          const r = m.getBoundingClientRect();
-          gsap.to(m, { x: (e.clientX - r.left - r.width / 2) * 0.25, y: (e.clientY - r.top - r.height / 2) * 0.25, duration: 0.4, ease: "power3" });
-        };
-        magnets.set(m, fn);
-        m.addEventListener("pointermove", fn);
-        m.addEventListener("pointerleave", leave);
-      });
+    // Magnetic buttons: pull toward the pointer, spring back elastically. Delegated from the
+    // one pointermove listener, so nothing has to rescan the page when content changes.
+    let magnet: HTMLElement | null = null;
+    const pull = (e: PointerEvent) => {
+      const m = (e.target as HTMLElement).closest<HTMLElement>("[data-magnetic]");
+      if (m !== magnet) {
+        if (magnet) gsap.to(magnet, { x: 0, y: 0, duration: 0.9, ease: "elastic.out(1, 0.35)" });
+        magnet = m;
+      }
+      if (!m) return;
+      const r = m.getBoundingClientRect();
+      gsap.to(m, { x: (e.clientX - r.left - r.width / 2) * 0.25, y: (e.clientY - r.top - r.height / 2) * 0.25, duration: 0.4, ease: "power3" });
     };
-    bindMagnets();
-    const mo = new MutationObserver(bindMagnets);
-    mo.observe(document.body, { childList: true, subtree: true });
 
     setMode("");
     window.addEventListener("pointermove", move);
@@ -62,8 +58,6 @@ export default function Cursor() {
     return () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", down);
-      mo.disconnect();
-      magnets.forEach((fn, m) => { m.removeEventListener("pointermove", fn); m.removeEventListener("pointerleave", leave); });
       document.documentElement.classList.remove("has-cursor");
     };
   }, []);

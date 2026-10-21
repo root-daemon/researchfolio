@@ -3,20 +3,21 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 
-// Characters start dim; a scrubbed, soft-edged front lights them up as you scroll.
+// Words start dim; a scrubbed, soft-edged front lights them up as you scroll.
+// (Per word, not per letter: a fifth of the nodes and tweens for the same effect.)
 // Words wrapped in *asterisks* get the accent highlight.
 export default function LightUpText({ text, className }: { text: string; className?: string }) {
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const chars = ref.current!.querySelectorAll(".lu-char");
+    const words = ref.current!.querySelectorAll(".lu-word");
     const tween = gsap.fromTo(
-      chars,
+      words,
       { opacity: 0.12 },
       {
         opacity: 1,
         ease: "none",
-        stagger: { each: 0.02 },
+        stagger: { each: 0.1 },
         scrollTrigger: { trigger: ref.current, start: "top 80%", end: "bottom 45%", scrub: 0.6 },
       },
     );
@@ -33,9 +34,7 @@ export default function LightUpText({ text, className }: { text: string; classNa
           <span key={pi} className={hl ? "hl" : undefined} aria-hidden>
             {words.map((w, wi) =>
               /^\s+$/.test(w) ? " " : (
-                <span key={wi} className="lu-word">
-                  {Array.from(w).map((c, ci) => <span key={ci} className="lu-char">{c}</span>)}
-                </span>
+                <span key={wi} className="lu-word">{w}</span>
               ),
             )}
           </span>
