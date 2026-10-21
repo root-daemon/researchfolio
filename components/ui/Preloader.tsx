@@ -34,7 +34,10 @@ export default function Preloader() {
       document.documentElement.classList.remove("is-loading");
       window.dispatchEvent(new Event("intro:done"));
     };
-    if (w.__introDone || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Boot once per browser session: reloads and return visits go straight to the page.
+    let booted = false;
+    try { booted = sessionStorage.getItem("booted") === "1"; sessionStorage.setItem("booted", "1"); } catch {}
+    if (w.__introDone || booted || matchMedia("(prefers-reduced-motion: reduce)").matches) {
       finish();
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setGone(true);

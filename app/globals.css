@@ -162,6 +162,7 @@ button, input { font: inherit; color: inherit; background: none; border: 0; curs
 /* ---------- boot screen ---------- */
 
 .preloader { position: fixed; inset: 0; z-index: 95; }
+.booted .preloader { display: none; }
 .pre-screen {
   position: absolute; inset: 0;
   background: var(--bg);

@@ -18,10 +18,12 @@ export default function TapeDeck() {
     let { accent, dim } = readColors();
     const offTheme = onThemeChange(() => ({ accent, dim } = readColors()));
     const buf = new Uint8Array(1024);
-    let raf = 0;
+    let raf = 0, visible = false;
     const draw = () => {
-      raf = requestAnimationFrame(draw);
-      const w = (c.width = c.clientWidth * 2), h = (c.height = c.clientHeight * 2);
+      // Resizing a canvas reallocates it, so only do it when the box actually changed.
+      const w = c.clientWidth * 2, h = c.clientHeight * 2;
+      if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
+      ctx.clearRect(0, 0, w, h);
       ctx.strokeStyle = dim;
       ctx.globalAlpha = 0.25;
       ctx.lineWidth = 1;
@@ -45,12 +47,18 @@ export default function TapeDeck() {
       ctx.stroke();
       ctx.shadowBlur = 0;
     };
-    const io = new IntersectionObserver(([e]) => {
+    // Animate only while audio is playing and the scope is on screen; otherwise one flat frame.
+    const loop = () => { draw(); raf = requestAnimationFrame(loop); };
+    const sync = () => {
       cancelAnimationFrame(raf);
-      if (e.isIntersecting) draw();
-    });
+      if (visible && synth.state.playing) loop();
+      else draw();
+    };
+    const off = synth.subscribe(sync);
+    const offRedraw = onThemeChange(sync);
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); });
     io.observe(c);
-    return () => { offTheme(); io.disconnect(); cancelAnimationFrame(raf); };
+    return () => { off(); offTheme(); offRedraw(); io.disconnect(); cancelAnimationFrame(raf); };
   }, []);
 
   const track = TRACKS[state.track];

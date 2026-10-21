@@ -15,8 +15,9 @@ export const metadata: Metadata = {
   description: "Video pipelines, meeting bots, scrapers and small Mac apps. Portfolio of Srivishal Sivasubramanian.",
 };
 
-// Restore the saved phosphor theme before paint. Older visits stored "light"/"dark".
-const themeScript = `try{var t=localStorage.getItem('theme');if(t==='light')t='paper';if(t==='amber'||t==='paper')document.documentElement.dataset.theme=t}catch(e){}`;
+// Before paint: restore the saved phosphor theme (older visits stored "light"/"dark"), and
+// hide the boot screen if it already ran this session so it never flashes on reload.
+const themeScript = `try{var d=document.documentElement,t=localStorage.getItem('theme');if(t==='light')t='paper';if(t==='amber'||t==='paper')d.dataset.theme=t;if(sessionStorage.getItem('booted')==='1')d.classList.add('booted')}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
