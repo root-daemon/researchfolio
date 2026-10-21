@@ -1,144 +1,36 @@
-# ResearchFolio
-
-A modern, minimalist portfolio template built with Astro and Lenis. Showcase your professional experience, skills, and projects with a clean and responsive design.
-
-## Features
-
-- 🚀 Built with Astro for optimal performance
-- 🖱️ Lenis for smooth scrolling
-- 🎨 Tailwind CSS for styling
-- 📱 Fully responsive design
-- 🌙 Dark/Light theme support
-- 🔧 Easy to customize and hot swappable.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js (v18 or higher)
-- npm or yarn or bun
-
-### Installation
-
-1. Clone this repository:
-```bash
-git clone https://github.com/rahuletto/researchfolio.git
-cd researchfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-# or
-bun install
-```
-
-3. Copy the environment variables:
-```bash
-cp .env.example .env
-```
-
-### Development
-
-Run the development server:
+First, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
 # or
+pnpm dev
+# or
 bun dev
 ```
 
-Open [http://localhost:4321](http://localhost:4321) in your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Customization
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Personal Information
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Edit `data.json` in the root directory to update your personal information:
+## Learn More
 
-```json
-{
-  "name": "Your Name",
-  "email": "your.email@example.com",
-  "biography": "Your bio",
-  "resume": "Link to your resume",
-  "github": "Your GitHub profile URL",
-  "location": "Your Location",
-  "linkedin": "Your LinkedIn profile URL",
-  "experience": [...],
-  "skills": {...},
-  "achievements": [...],
-}
-```
+To learn more about Next.js, take a look at the following resources:
 
-### Experience
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Add your work experience in the `experience` array in `data.json`:
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-```json
-{
-  "companyName": "Company Name",
-  "companyURL": "Company Website URL",
-  "companyLogo": "Company Logo URL",
-  "title": "Your Position",
-  "location": "Job Location",
-  "employmentType": "Full-time/Part-time/Internship",
-  "start": {
-    "year": 2024,
-    "month": 1
-  },
-  "end": {
-    "year": 2024,
-    "month": 12
-  }
-}
-```
+## Deploy on Vercel
 
-### Skills
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Update your skills in the `skills` object in `data.json`:
-
-```json
-{
-  "frontend": ["HTML & CSS", "JavaScript", "React"],
-  "backend": ["Node.js", "Express"],
-  "database": ["MongoDB", "PostgreSQL"],
-  "others": ["Git", "Docker"]
-}
-```
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Create a new project on [Vercel](https://vercel.com)
-2. Connect your GitHub repository
-3. Vercel will automatically detect Astro and configure the build settings
-4. Deploy!
-
-### Manual Deployment
-
-1. Build the project:
-```bash
-npm run build
-# or
-yarn build
-# or
-bun run build
-```
-
-2. The build output will be in the `dist` directory
-
-3. Deploy the `dist` directory to your hosting provider
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Support
-
-If you find any bugs or have feature requests, please open an issue on GitHub.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

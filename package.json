@@ -1,28 +1,26 @@
 {
-  "name": "researchfolio",
-  "type": "module",
-  "version": "0.0.1",
+  "name": "my-site",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/react": "4.2.0",
-    "@astrojs/tailwind": "6.0.0",
-    "@rollup/plugin-yaml": "^4.1.2",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
-    "astro": "5.2.2",
-    "astro-lenis": "^1.0.0",
-    "lenis": "^1.1.20",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.3.0",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.2"
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.27",
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "typescript": "^5"
   }
 }
