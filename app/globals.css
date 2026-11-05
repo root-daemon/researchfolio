@@ -118,6 +118,7 @@ button, input { font: inherit; color: inherit; background: none; border: 0; curs
   width: 0; height: 0;
   pointer-events: none;
   display: none;
+  opacity: 0;
 }
 .has-cursor .cursor { display: block; }
 .cursor::before {

@@ -119,7 +119,7 @@ export default function Shell() {
   const ps1 = `${profile.user}@${profile.host}:~$`;
   return (
     <div className="shell" onClick={() => input.current?.focus({ preventScroll: true })}>
-      <div ref={screen} className="shell-screen" aria-live="polite">
+      <div ref={screen} className="shell-screen" aria-live="polite" data-lenis-prevent>
         {lines.map((l, i) => (
           <pre key={i} className={`shell-line shell-line--${l.kind}`}>
             {l.kind === "in" ? <><span className="ps1">{ps1}</span> {l.text}</> : l.text}

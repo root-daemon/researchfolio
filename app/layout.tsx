@@ -17,7 +17,8 @@ export const metadata: Metadata = {
 
 // Before paint: restore the saved phosphor theme (older visits stored "light"/"dark"), and
 // hide the boot screen if it already ran this session so it never flashes on reload.
-const themeScript = `try{var d=document.documentElement,t=localStorage.getItem('theme');if(t==='light')t='paper';if(t==='amber'||t==='paper')d.dataset.theme=t;if(sessionStorage.getItem('booted')==='1')d.classList.add('booted')}catch(e){}`;
+// Also hide the native cursor on mouse devices before first paint, not after hydration.
+const themeScript = `try{var d=document.documentElement,t=localStorage.getItem('theme');if(t==='light')t='paper';if(t==='amber'||t==='paper')d.dataset.theme=t;if(sessionStorage.getItem('booted')==='1')d.classList.add('booted')}catch(e){}try{if(matchMedia('(hover: hover) and (pointer: fine)').matches)document.documentElement.classList.add('has-cursor')}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

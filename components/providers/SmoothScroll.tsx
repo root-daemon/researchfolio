@@ -33,7 +33,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         let best: HTMLElement | null = null;
         let bestDist = window.innerHeight * 0.18; // only snap when we're already close
         for (const t of targets) {
-          const d = Math.abs(t.getBoundingClientRect().top);
+          const r = t.getBoundingClientRect();
+          // Already inside a section taller than the screen (e.g. the footer at the page
+          // bottom): leave the reader where they are instead of yanking them to its top.
+          if (r.top < 0 && r.bottom >= window.innerHeight - 1) continue;
+          const d = Math.abs(r.top);
           if (d < bestDist) { bestDist = d; best = t; }
         }
         if (best && bestDist > 2) l.scrollTo(y + best.getBoundingClientRect().top, { duration: 1.2 });

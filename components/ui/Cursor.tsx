@@ -19,6 +19,7 @@ export default function Cursor() {
     const xTo = gsap.quickTo(el, "x", { duration: 0.12, ease: "power3" });
     const yTo = gsap.quickTo(el, "y", { duration: 0.12, ease: "power3" });
     let mode: string | null = null;
+    let shown = false;
 
     const setMode = (m: string, text = "") => {
       if (m === mode) return;
@@ -29,6 +30,11 @@ export default function Cursor() {
     };
 
     const move = (e: PointerEvent) => {
+      // The crosshair starts hidden at 0,0; place it on the pointer before showing it.
+      if (!shown) {
+        shown = true;
+        gsap.set(el, { x: e.clientX, y: e.clientY, opacity: 1 });
+      }
       xTo(e.clientX);
       yTo(e.clientY);
       const target = (e.target as HTMLElement).closest<HTMLElement>("[data-cursor], a, button, input");
